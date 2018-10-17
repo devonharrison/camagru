@@ -1,0 +1,69 @@
+<?php
+/*
+Login and Database information
+*/
+$servername = "localhost";
+$username = "root";
+$password = "password";
+$dbname = "camagru";
+$tbl_users = "users";
+
+/*
+Create connection
+*/
+$conn = mysqli_connect($servername, $username, $password);
+/*
+Check connection
+*/
+if (!$conn)
+{
+    die("Connection failed: " . mysqli_connect_error()."<br>");
+}
+
+/* 
+Create database if it hasn't been already
+*/
+$sql = "CREATE DATABASE IF NOT EXISTS $dbname";
+if (mysqli_query($conn, $sql))
+{
+    echo "Database created successfully<br>";
+}
+else
+{
+    echo "Error creating database: " . mysqli_error($conn)."<br>";
+}
+
+/*
+Refresh connection
+*/
+$conn = mysqli_connect($servername, $username, $password, $dbname);
+if (!$conn)
+{
+    die("Connection failed: " . mysqli_connect_error()."<br>");
+}
+
+/*
+User Table
+*/
+$sql = "CREATE TABLE IF NOT EXISTS $tbl_users (
+	user_id INT(100) UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL, 
+	user_title TEXT NOT NULL)";
+	
+if (mysqli_query($conn, $sql)) {
+	echo "User Table created successfully<br>";
+} else {
+	echo "Error creating table: ".mysqli_error($conn)."<br>";
+}
+/*
+$sql = "INSERT INTO $tbl_user (user_id, user_title) VALUES
+(1, ''),
+
+if (mysqli_query($conn, $sql)) {
+    echo "User created successfully<br>";
+} else {
+    echo "Error: " . $sql . "<br>" . mysqli_error($conn)."<br>";
+}
+*/
+
+mysqli_close($conn);
+?>
