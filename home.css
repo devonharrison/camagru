@@ -4,6 +4,7 @@ body {
 
 #home {
     background-color: darkgray;
+    border: 25px black;
     width: 60%;
     height: 80%;
     margin-left: 20%;
