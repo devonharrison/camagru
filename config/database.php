@@ -3,7 +3,7 @@
 Login and Database information
 */
 $servername = "localhost";
-$username = "root";
+$dusername = "root";
 $password = "password";
 $dbname = "camagru";
 $tbl_users = "users";
@@ -11,7 +11,7 @@ $tbl_users = "users";
 /*
 Create connection
 */
-$conn = mysqli_connect($servername, $username, $password);
+$conn = mysqli_connect($servername, $dusername, $password);
 /*
 Check connection
 */
@@ -36,7 +36,7 @@ else
 /*
 Refresh connection
 */
-$conn = mysqli_connect($servername, $username, $password, $dbname);
+$conn = mysqli_connect($servername, $dusername, $password, $dbname);
 if (!$conn)
 {
     die("Connection failed: " . mysqli_connect_error()."<br>");
@@ -47,7 +47,8 @@ User Table
 */
 $sql = "CREATE TABLE IF NOT EXISTS $tbl_users (
 	user_id INT(100) UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL, 
-	user_title TEXT NOT NULL)";
+	name TEXT NOT NULL, surname TEXT NOT NULL, username TEXT NOT NULL,
+    email TEXT NOT NULL, password TEXT NOT NULL)";
 	
 if (mysqli_query($conn, $sql)) {
 	echo "User Table created successfully<br>";
