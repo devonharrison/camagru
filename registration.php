@@ -22,19 +22,19 @@
         <input type="password" name="password" class="inputvalues" placeholder="Enter a password"/><br>
         <label>Confirm Password:</label><br>
         <input type="password" name="cpassword" class="inputvalues" placeholder="Confrim password"/><br>
-        <input type="submit" name="formsubmit" value="Submit"/>
+        <input type="button" id="reg_btn" name="formsubmit" value="Submit"/>
     </form>
     <?php
         $servername = "localhost";
         $dusername = "root";
-        $password = "password";
+        $dpassword = "password";
         $dbname = "camagru";
-        $conn = mysqli_connect($servername, $dusername, $password);
+        $conn = mysqli_connect($servername, $dusername, $dpassword);
         if (!$conn)
         {
             die("Connection failed: " . mysqli_connect_error()."<br>");
         }
-        mysql_select_db($dbname, $conn);
+        mysqli_select_db($dbname, $conn);
         if ($_POST['formsubmit'] == "Submit")
         {
             $name = $_POST['firstname'];
@@ -43,33 +43,8 @@
             $email = $_POST['email'];
             $password = $_POST['password'];
             $cpassword = $_POST['cpassword'];
-            $errormesg = "";
-            if (empty($name))
-            {
-                $errormsg = "<li>Please enter your name<li>";
-            }
-            if (empty($surname))
-            {
-                $errormsg = "<li>Please enter your surname<li>";
-            }
-            if (empty($username))
-            {
-                $errormsg = "<li>Please enter a username<li>";
-            }
-            if (empty($email))
-            {
-                $errormsg = "<li>Please enter your email address<li>";
-            }
-            if (empty($password))
-            {
-                $errormsg = "<li>Please enter a password<li>";
-            }
-            if (empty($cpassword))
-            {
-                $errormsg = "<li>Please confirm your password<li>";
-            }
-            $sql = "INSERT INTO users (name, surname, username, email, password)
-            VALUES (". $name .", " . $surname .", " . $username .", " . $email .", ". password .")";
+            $sql = "INSERT INTO camagru (name, surname, username, email, password)
+            VALUES ($name, $surname, $username, $email, $password)";
             mysqli_query($conn, $sql);
         }
     ?>
