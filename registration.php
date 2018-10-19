@@ -8,8 +8,8 @@
 </head>
 <body id="body">
     <div id="main">
-        <center><h2>Register</h2></center>
-     <form class="form" action="register.php" method="post">
+        <center><h2>Registration</h2></center>
+     <form class="form" action="registration.php" method="post">
         <label>First name:</label><br>
         <input type="text" name="firstname" class="inputvalues" placeholder="Enter first name"/><br>
         <label>Surname:</label><br>
@@ -22,7 +22,7 @@
         <input type="password" name="password" class="inputvalues" placeholder="Enter a password"/><br>
         <label>Confirm Password:</label><br>
         <input type="password" name="cpassword" class="inputvalues" placeholder="Confrim password"/><br>
-        <input type="button" id="reg_btn" name="regbtn" value="Register"/>
+        <input type="submit" name="formsubmit" value="Submit"/>
     </form>
     <?php
         $servername = "localhost";
@@ -34,7 +34,8 @@
         {
             die("Connection failed: " . mysqli_connect_error()."<br>");
         }
-        if ($_POST['regbtn'] == "Register")
+        mysql_select_db($dbname, $conn);
+        if ($_POST['formsubmit'] == "Submit")
         {
             $name = $_POST['firstname'];
             $surname = $_POST['surname'];
@@ -69,7 +70,7 @@
             }
             $sql = "INSERT INTO users (name, surname, username, email, password)
             VALUES (". $name .", " . $surname .", " . $username .", " . $email .", ". password .")";
-            mysql_query($sql);
+            mysqli_query($conn, $sql);
         }
     ?>
 </div>
