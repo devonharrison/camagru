@@ -22,30 +22,35 @@
         <input type="password" name="password" class="inputvalues" placeholder="Enter a password"/><br>
         <label>Confirm Password:</label><br>
         <input type="password" name="cpassword" class="inputvalues" placeholder="Confrim password"/><br>
-        <input type="button" id="reg_btn" name="formsubmit" value="Submit"/>
+        <button type="submit" class="btn" name="reg_user">Register</button>
     </form>
     <?php
+        session_start();
+        $errors = array();
+        $username = "";
+        $email    = "";
         $servername = "localhost";
         $dusername = "root";
-        $dpassword = "password";
+        $password = "password";
         $dbname = "camagru";
-        $conn = mysqli_connect($servername, $dusername, $dpassword);
+        $conn = mysqli_connect($servername, $dusername, $password, $dbname);
         if (!$conn)
         {
             die("Connection failed: " . mysqli_connect_error()."<br>");
         }
-        mysqli_select_db($dbname, $conn);
-        if ($_POST['formsubmit'] == "Submit")
+        if (isset($_POST['reg_user']))
         {
-            $name = $_POST['firstname'];
+            $firstname = $_POST['firstname'];
             $surname = $_POST['surname'];
             $username = $_POST['username'];
             $email = $_POST['email'];
-            $password = $_POST['password'];
-            $cpassword = $_POST['cpassword'];
-            $sql = "INSERT INTO camagru (name, surname, username, email, password)
-            VALUES ($name, $surname, $username, $email, $password)";
-            mysqli_query($conn, $sql);
+            $password_1 = $_POST['password'];
+            $password_2 =  $_POST['cpassword'];
+            $query = "INSERT INTO users (name, surname, username, email, password) VALUES('$firstname', '$surname', '$username', '$email', '$password_1')";
+            mysqli_query($conn, $query);
+            $_SESSION['username'] = $username;
+            $_SESSION['success'] = "You are now logged in";
+            echo "registered";
         }
     ?>
 </div>
