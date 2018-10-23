@@ -4,7 +4,7 @@ Login and Database information
 */
 $servername = "localhost";
 $dusername = "root";
-$password = "password";
+$password = "amogelang";
 $dbname = "camagru";
 $tbl_users = "users";
 

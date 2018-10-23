@@ -1,6 +1,6 @@
 <?php
     $currentDir = getcwd();
-    $uploads = "/downloads/";
+    $uploads = "/Documents/";
 
     $erros = [];
 
