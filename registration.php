@@ -38,6 +38,8 @@
         {
             die("Connection failed: " . mysqli_connect_error()."<br>");
         }
+        /*checks if the register button is clicked, if clicked it saves all the information
+        from the form in corresponding variables*/
         if (isset($_POST['reg_user']))
         {
             $firstname = $_POST['firstname'];
@@ -46,11 +48,20 @@
             $email = $_POST['email'];
             $password_1 = $_POST['password'];
             $password_2 =  $_POST['cpassword'];
-            $query = "INSERT INTO users (name, surname, username, email, password) VALUES('$firstname', '$surname', '$username', '$email', '$password_1')";
+            $hash = password_hash($password_1, PASSWORD_DEFAULT);
+            if (password_verify($password_2, $hash) == TRUE)
+            {
+                $query = "INSERT INTO users (name, surname, username, email, password) VALUES('$firstname', '$surname', '$username',
+                '$email', '$hash')";
+                $_SESSION['username'] = $username;
+                $_SESSION['success'] = "You are now logged in";
+                echo "registered";
+            }
+            else
+            {
+                echo "Passwords do not match, please re-enter passwords";
+            }
             mysqli_query($conn, $query);
-            $_SESSION['username'] = $username;
-            $_SESSION['success'] = "You are now logged in";
-            echo "registered";
         }
     ?>
 </div>
