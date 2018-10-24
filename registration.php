@@ -1,5 +1,3 @@
-<?php
-?>
 <!DOCTYPE <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +20,7 @@
         <input type="password" name="password" class="inputvalues" placeholder="Enter a password"/><br>
         <label>Confirm Password:</label><br>
         <input type="password" name="cpassword" class="inputvalues" placeholder="Confrim password"/><br>
-        <button type="submit" class="btn" name="reg_user">Register</button>
+        <button id="reg_btn" type="submit" class="btn" name="reg_user">Register</button>
     </form>
     <?php
         session_start();
@@ -51,8 +49,14 @@
             $hash = password_hash($password_1, PASSWORD_DEFAULT);
             if (password_verify($password_2, $hash) == TRUE)
             {
-                $query = "INSERT INTO users (name, surname, username, email, password) VALUES('$firstname', '$surname', '$username',
+                $add = "INSERT INTO users (name, surname, username, email, password) VALUES('$firstname', '$surname', '$username',
                 '$email', '$hash')";
+                $check = "SELECT username FROM users";
+                $result = mysqli_query($conn, $check);
+                $num_rows = mysqli_num_rows($result);
+                while ($num_rows > 0)
+                {
+                }
                 $_SESSION['username'] = $username;
                 $_SESSION['success'] = "You are now logged in";
                 echo "registered";
@@ -61,7 +65,7 @@
             {
                 echo "Passwords do not match, please re-enter passwords";
             }
-            mysqli_query($conn, $query);
+            mysqli_query($conn, $add);
         }
     ?>
 </div>
