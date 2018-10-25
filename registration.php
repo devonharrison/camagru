@@ -54,9 +54,6 @@
                 $check = "SELECT username FROM users";
                 $result = mysqli_query($conn, $check);
                 $num_rows = mysqli_num_rows($result);
-                while ($num_rows > 0)
-                {
-                }
                 $_SESSION['username'] = $username;
                 $_SESSION['success'] = "You are now logged in";
                 echo "registered";
