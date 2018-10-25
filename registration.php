@@ -75,7 +75,6 @@
                 }
                 if ($u == 0)
                 {
-                    
                     if (password_verify($password_2, $hash) == TRUE)
                     {
                         $add = "INSERT INTO users (name, surname, username, email, password) VALUES('$firstname', '$surname', '$username',
@@ -86,7 +85,7 @@
                         $_SESSION['username'] = $username;
                         $_SESSION['success'] = "You are now logged in";
                         mysqli_query($conn, $add);
-                        echo "registered";
+                        echo "Confirmation email sent to ".$email."<br>";
                     }
                     else
                     {
