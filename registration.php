@@ -40,29 +40,59 @@
         from the form in corresponding variables*/
         if (isset($_POST['reg_user']))
         {
-            $firstname = $_POST['firstname'];
-            $surname = $_POST['surname'];
-            $username = $_POST['username'];
-            $email = $_POST['email'];
-            $password_1 = $_POST['password'];
-            $password_2 =  $_POST['cpassword'];
-            $hash = password_hash($password_1, PASSWORD_DEFAULT);
-            if (password_verify($password_2, $hash) == TRUE)
+            if (empty($_POST['firstname']) || empty($_POST['surname']) || empty($_POST['username']) ||
+            empty($_POST['email']) || empty($_POST['password']) || empty($_POST['cpassword']))
             {
-                $add = "INSERT INTO users (name, surname, username, email, password) VALUES('$firstname', '$surname', '$username',
-                '$email', '$hash')";
-                $check = "SELECT username FROM users";
-                $result = mysqli_query($conn, $check);
-                $num_rows = mysqli_num_rows($result);
-                $_SESSION['username'] = $username;
-                $_SESSION['success'] = "You are now logged in";
-                echo "registered";
+                echo "Empty field <br>";
             }
             else
             {
-                echo "Passwords do not match, please re-enter passwords";
+                $firstname = $_POST['firstname'];
+                $surname = $_POST['surname'];
+                $username = $_POST['username'];
+                $email = $_POST['email'];
+                $password_1 = $_POST['password'];
+                $password_2 =  $_POST['cpassword'];
+                $hash = password_hash($password_1, PASSWORD_DEFAULT);
+                $qry = "SELECT username, email FROM users";
+                $result = mysqli_query($conn, $qry);
+                $u = 0;
+                if (mysqli_num_rows($result) > 0)
+                {
+                    while ($row = mysqli_fetch_assoc($result))
+                    {
+                        if ($row['username'] == $username)
+                        {
+                            echo "Username ".$username." taken.<br>";
+                            $u = 1;
+                        }
+                        if ($row['email'] == $email)
+                        {
+                            echo "Email ".$email." already used.<br>";
+                            $u = 1;
+                        }
+                    }
+                }
+                if ($u == 0)
+                {
+                    if (password_verify($password_2, $hash) == TRUE)
+                    {
+                        $add = "INSERT INTO users (name, surname, username, email, password) VALUES('$firstname', '$surname', '$username',
+                        '$email', '$hash')";
+                        $check = "SELECT username FROM users";
+                        $result = mysqli_query($conn, $check);
+                        $num_rows = mysqli_num_rows($result);
+                        $_SESSION['username'] = $username;
+                        $_SESSION['success'] = "You are now logged in";
+                        mysqli_query($conn, $add);
+                        echo "Confirmation email sent to ".$email."<br>";
+                    }
+                    else
+                    {
+                        echo "Passwords do not match, please re-enter passwords";
+                    }
+                }
             }
-            mysqli_query($conn, $add);
         }
     ?>
 </div>
