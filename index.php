@@ -11,7 +11,11 @@
 </head>
 
 <body>
-    <nav>
-        <p><strong>Camagru</strong></p>
+    <ul>
+        <li id="left"><a id="camagru" href="#home">Camagru</a></li>
+        <li class="right"><a class="info" href="login.php">Login</a></li>
+        <li class="right"><a class="info" href="registration.php">Sign-up</a></li>
+</ul>
+
 </body>
 </html>
