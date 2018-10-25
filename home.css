@@ -1,47 +1,18 @@
 body {
-    background-color: gainsboro;
+    background-color: aliceblue;
 }
 
-#home {
-    position: fixed;
-    border: solid;
-    width: 60%;
-    height: 80%;
-    margin: auto;
-}
-
-#left {
-    float: left;
-    border-radius: 10px;
-    border: 2px solid black;
-    width: 49.4%;
-    height: 100%;
-}
-
-#right {
-    float: left;
-    border-radius: 10px;
-    border: 2px solid black;
-    width: 49.4%;
-    height: 100%;
-}
-
-.register {
+nav {
     width: 100%;
-    margin: auto;
+    height: 95px;
+    background-color: whitesmoke;
 }
 
-.inputvalues {
-    width: 30%;
-    margin: auto;
-    padding: 5px;
-}
-#reg_btn {
-    background-color: greenyellow;
-    padding: 5px;
-    color: white;
-    width: 25%;
-    text-align: center;
-    font-size: 18px;
-    font-weight: bold;
+nav p {
+    font-family: cursive;
+    color: black;
+    font-size: 55px;
+    line-height: 77px;
+    float: left;
+    padding: 0px 20px;
 }
