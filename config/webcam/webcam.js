@@ -5,13 +5,14 @@ var canvas2 = document.getElementById('canvas2');
 var context2 = canvas2.getContext('2d');
 
 // Get access to the camera!
-if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-    // Not adding `{ audio: true }` since we only want video now
-    navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
-        video.src = window.URL.createObjectURL(stream);
-        video.play();
-    });
+if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)
+{
+   navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream)
+   {
+       video.srcObject = stream;
+   });
 }
+
 var img2 = new Image();
 img2.src = 'http://chittagongit.com//images/photo-booth-icon-png/photo-booth-icon-png-12.jpg';
 

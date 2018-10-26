@@ -29,7 +29,7 @@
         $email    = "";
         $servername = "localhost";
         $dusername = "root";
-        $password = "password";
+        $password = "amogelang";
         $dbname = "camagru";
         $conn = mysqli_connect($servername, $dusername, $password, $dbname);
         if (!$conn)
