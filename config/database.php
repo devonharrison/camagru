@@ -4,7 +4,7 @@ Login and Database information
 */
 $servername = "localhost";
 $dusername = "root";
-$password = "amogelang";
+$password = "password";
 $dbname = "camagru";
 $tbl_users = "users";
 
@@ -49,18 +49,30 @@ $sql = "CREATE TABLE IF NOT EXISTS $tbl_users (
 	user_id INT(100) UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL, 
 	name TEXT NOT NULL, surname TEXT NOT NULL, username TEXT NOT NULL,
     email TEXT NOT NULL, password TEXT NOT NULL)";
-
- $sql1 = "CREATE TABLE IF NOT EXISTS `tbl_images` (  
-    `id` int(11) NOT NULL AUTO_INCREMENT,  
-    `name` blob NOT NULL,  
-    PRIMARY KEY (`id`)  
-   ) "; 
 	
 if (mysqli_query($conn, $sql)) {
 	echo "User Table created successfully<br>";
 } else {
 	echo "Error creating table: ".mysqli_error($conn)."<br>";
 }
+
+/*
+image table
+*/
+
+$sql1 = "CREATE TABLE IF NOT EXISTS `tbl_images` (  
+    `id` int(11) NOT NULL AUTO_INCREMENT,  
+    `name` blob NOT NULL,  
+    PRIMARY KEY (`id`))";
+   if (mysqli_query($conn, $sql1))
+   {
+       echo "Image Table created successfully<br>";
+    }
+    else
+    {
+        echo "Error creating table: ".mysqli_error($conn)."<br>";
+    }
+
 /*
 $sql = "INSERT INTO $tbl_user (user_id, user_title) VALUES
 (1, ''),
