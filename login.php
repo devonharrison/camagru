@@ -9,7 +9,7 @@
 <body>
     <div>
         <center><h2>Login</h2></center>
-     <form class="form" action="login.php" method="post">
+     <form class="form" action="home.php" method="post">
         <label>Username:</label><br>
         <input type="text" name="username" class="inputvalues" placeholder="Enter a username"/><br>
         <label>Email address:</label><br>
