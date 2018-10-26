@@ -29,7 +29,7 @@
         $email    = "";
         $servername = "localhost";
         $dusername = "root";
-        $password = "amogelang";
+        $password = "password";
         $dbname = "camagru";
         $conn = mysqli_connect($servername, $dusername, $password, $dbname);
         if (!$conn)
@@ -85,6 +85,10 @@
                         $_SESSION['username'] = $username;
                         $_SESSION['success'] = "You are now logged in";
                         mysqli_query($conn, $add);
+                        $subject = "Camagru registration confirmation";
+                        $body = "http://localhost:8080/camagru/login.php";
+                        $headers = "MIME-Version: 1.0 Content-Type: text/html; charset=UTF-8";
+                        mail ($email, $subject, $body, $headers);
                         echo "Confirmation email sent to ".$email."<br>";
                     }
                     else
