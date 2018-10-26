@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="signup.css">
 </head>
 <body>
+    <center><h1>Camagru</h1></center>
     <div>
         <center><h2>Sign-up</h2></center>
      <form class="form" action="signup.php" method="post">
@@ -29,7 +30,7 @@
         $email    = "";
         $servername = "localhost";
         $dusername = "root";
-        $password = "amogelang";
+        $password = "password";
         $dbname = "camagru";
         $conn = mysqli_connect($servername, $dusername, $password, $dbname);
         if (!$conn)

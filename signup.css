@@ -1,13 +1,28 @@
 body {
-    background-color: aliceblue;
+    background-color: #edc7b7;
+}
+h1 {
+    color: #ac3b61;
+    font-family: cursive;
+    font-weight: bolder;
+    font-size: 200%;
 }
 div {
     width: 500px;
     margin: 0 auto;
-    background: gainsboro;
+    background: #eee2dc;
     padding: 8px;
     border-radius: 10px;
-    border: 2px solid black;
+    border: 2px solid #bab2b5;
+}
+h2 {
+    color: #ac3b61;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+}
+label {
+    color: #123c69;
+    font-family: 'Courier New', Courier, monospace;
 }
 .form {
     width: 450px;
@@ -16,14 +31,15 @@ div {
 .inputvalues {
     width: 430px;
     margin: 0 auto;
-    padding: 5px;
+    padding: 8px;
 }
 #reg_btn {
-    background-color: rgb(31, 189, 31);
+    background-color: #bab2b5;
     padding: 8px;
-    color: black;
+    color: #123c69;
     width: 430px;
     text-align: center;
+    font-family: 'Courier New', Courier, monospace;
     font-size: 18px;
     font-weight: bold;
 }
