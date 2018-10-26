@@ -86,6 +86,11 @@
                         $_SESSION['username'] = $username;
                         $_SESSION['success'] = "You are now logged in";
                         mysqli_query($conn, $add);
+                        /* sends confirmation email with link to login page */
+                        $subject = "Camagru registration confirmation";
+                        $body = "http://localhost:8080/camagru/login.php";
+                        $headers = "From: noreply@camagru.com";
+                        mail ($email, $subject, $body, $headers);
                         echo "Confirmation email sent to ".$email."<br>";
                     }
                     else
