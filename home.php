@@ -1,5 +1,3 @@
-<?php?>
-
 <!DOCTYPE html>
 <html lang="en-US">
 
@@ -15,7 +13,9 @@
         <li id="left"><a id="camagru" href="#home">Camagru</a></li>
         <li class="right"><a class="info" href="index.php">Logout</a></li>
         <li class="right"><a class="info" href="#">Settings</a></li>
-</ul>
+    </ul>
+    <?php
 
+    ?>
 </body>
 </html>
