@@ -1,6 +1,7 @@
 <?php
     $currentDir = getcwd();
     $uploads = "/Documents/";
+    $connect = mysqli_connect("localhost", "root", "amogelang", "camagru");
 
     $erros = [];
 
@@ -9,7 +10,7 @@
     $fileName = $_FILES['myfile']['name'];
     $fileSize = $_FILES['myfile']['size'];
     $fileTmpName = $_FILES['myfile']['tmp_name'];
-    $fileTyoe = $_FILES['myfile']['type'];
+    $fileType = $_FILES['myfile']['type'];
     $fileExtension = strtolower(end(explode('.', $fileName)));
 
     $uploadPath = $currentDir . $uploadDirectory . basename($fileName);
@@ -29,7 +30,12 @@
         if(empty($erros))
         {
             $didUpload = move_uploaded_file($fileTmpName, $uploadPath);
-
+            $fileName = addslashes(file_get_contents($fileTmpName));  
+            $query = "INSERT INTO tbl_images VALUES ('$fileTmpName', '$fileName')";  
+            if(mysqli_query($connect, $query))  
+            {  
+                 echo '<script>alert("Image Inserted into Database")</script>';  
+            }  
             if($didUpload)
             {
                 echo "The file " . basename($fileName). " has been uploaded";
