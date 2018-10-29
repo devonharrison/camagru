@@ -3,8 +3,11 @@
 <head>
     <title>Register</title>
     <link rel="stylesheet" href="signup.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
+    <center><h1>Camagru</h1></center>
     <div>
         <center><h2>Sign-up</h2></center>
      <form class="form" action="signup.php" method="post">
@@ -20,7 +23,7 @@
         <input type="password" name="password" class="inputvalues" placeholder="Enter a password"/><br>
         <label>Confirm Password:</label><br>
         <input type="password" name="cpassword" class="inputvalues" placeholder="Confrim password"/><br>
-        <button id="reg_btn" type="submit" class="btn" name="reg_user">Register</button>
+        <button id="reg_btn" type="submit" name="reg_user">Register</button>
     </form>
     <?php
         session_start();
@@ -85,11 +88,13 @@
                         $_SESSION['username'] = $username;
                         $_SESSION['success'] = "You are now logged in";
                         mysqli_query($conn, $add);
+                        /* sends confirmation email with link to login page */
                         $subject = "Camagru registration confirmation";
                         $body = "http://localhost:8080/camagru/login.php";
-                        $headers = "MIME-Version: 1.0 Content-Type: text/html; charset=UTF-8";
+                        $headers = "From: noreply@camagru.com";
                         mail ($email, $subject, $body, $headers);
                         echo "Confirmation email sent to ".$email."<br>";
+                        header('Location: http://localhost:8080/camagru/confirmation.php');
                     }
                     else
                     {
