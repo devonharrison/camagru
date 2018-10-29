@@ -92,6 +92,7 @@
                         $headers = "From: noreply@camagru.com";
                         mail ($email, $subject, $body, $headers);
                         echo "Confirmation email sent to ".$email."<br>";
+                        header('Location: http://localhost:8080/camagru/confirmation.php');
                     }
                     else
                     {
