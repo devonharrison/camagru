@@ -1,0 +1,51 @@
+body {
+    background-color: #edc7b7;
+    margin: 0;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #eee2dc;
+}
+
+li a {
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none; 
+}
+
+#left {
+    float: left;
+}
+
+.right {
+    padding-top: 35px; 
+    float: right;
+}
+
+#camagru {
+    font-family: cursive;
+    color: #ac3b61;
+    font-size: 250%;
+}
+
+.info {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #123c69;
+}
+div {
+    width: 700px;
+    margin: 0 auto;
+
+}
+#canvas {
+    border: 5px solid #bab2b5;
+    border-radius: 10px;
+}
