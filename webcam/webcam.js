@@ -14,7 +14,7 @@ if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)
 }
 
 var img2 = new Image();
-img2.src = 'http://chittagongit.com//images/photo-booth-icon-png/photo-booth-icon-png-12.jpg';
+//img2.src = 'http://chittagongit.com//images/photo-booth-icon-png/photo-booth-icon-png-12.jpg';
 
 setInterval(() => {
 	context.drawImage(video, 0, 0, 640, 480);
