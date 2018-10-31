@@ -17,41 +17,33 @@
         </form>
     </div>
     <?php
-          $servername = "localhost";
-          $dusername = "root";
-          $password = "password";
-          $dbname = "camagru";
-          $conn = mysqli_connect($servername, $dusername, $password, $dbname);
-          if (!$conn)
-          {
-              die("Connection failed: " . mysqli_connect_error()."<br>");
-          }
-            if (isset($_POST['send']))
+        $servername = "localhost";
+        $dusername = "root";
+        $password = "password";
+        $dbname = "camagru";
+        $conn = mysqli_connect($servername, $dusername, $password, $dbname);
+        if (!$conn)
+        {
+            die("Connection failed: " . mysqli_connect_error()."<br>");
+        }
+        if (isset($_POST['send']))
+        {
+            if (empty($_POST['email']))
             {
-                if (empty($_POST['email']))
-                {
-                    echo "Empty field <br>";
-                }
-                else
-                {
-                    $email = $_POST['email'];
-                    $qry = "SELECT email FROM users";
-                    $result = mysqli_query($conn, $qry);
-                    if (mysqli_num_rows($result) > 0)
-                    {
-                        while ($row = mysqli_fetch_assoc($result))
-                        {
-                            if ($row['email'] == $email)
-                            {
-                                $subject = "Camagru password change";
-                                $body = "http://localhost:8080/camagru/changepw.php";
-                                $headers = "From: noreply@camagru.com";
-                                mail ($email, $subject, $body, $headers);
-                            }
-                        }
-                    }
-                }
+                echo "Empty field <br>";
             }
+            else
+            {
+                $email = $_POST['email'];
+                $qry = "SELECT email FROM users";
+                $result = mysqli_query($conn, $qry);
+                $hash = password_hash($email, PASSWORD_DEFAULT);
+                $subject = "Camagru password change";
+                $body = "http://localhost:8080/camagru/changepw.php?action=set&key=$hash";
+                $headers = "From: noreply@camagru.com";
+                mail ($email, $subject, $body, $headers);
+            }
+        }
     ?>
 </body>
 </html>
