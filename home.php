@@ -14,6 +14,7 @@
         <li class="right"><a class="info" href="index.php">Logout</a></li>
         <li class="right"><a class="info" href="#">Settings</a></li>
     </ul>
+    <a href="webcam/web.php" class="button">Camera</a>
     <?php
 
     ?>
