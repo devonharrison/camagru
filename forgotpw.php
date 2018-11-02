@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html>
     <head>
-        <title>Login</title>
+        <title>Forgot password</title>
         <link rel="stylesheet" href="login.css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -13,7 +13,7 @@
         <form class="form" action="login.php" method="post">
             <label>Email:</label><br>
             <input type="text" name="email" class="inputvalues" placeholder="Confirm email address"/><br>
-            <button type="submit" id="login_btn" name="send">Send email</button>
+            <button id="login_btn" type="submit" name="send">Send email</button>
         </form>
     </div>
     <?php
@@ -35,8 +35,8 @@
             else
             {
                 $email = $_POST['email'];
-                $qry = "SELECT email FROM users";
-                $result = mysqli_query($conn, $qry);
+                //$qry = "SELECT email FROM users";
+                //$result = mysqli_query($conn, $qry);
                 $hash = password_hash($email, PASSWORD_DEFAULT);
                 $subject = "Camagru password change";
                 $body = "http://localhost:8080/camagru/changepw.php?action=set&key=$hash";
