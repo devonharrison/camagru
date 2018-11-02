@@ -4,7 +4,7 @@ Login and Database information
 */
 $servername = "localhost";
 $dusername = "root";
-$password = "password";
+$password = "amogelang";
 $dbname = "camagru";
 $tbl_users = "users";
 
@@ -60,10 +60,11 @@ if (mysqli_query($conn, $sql)) {
 image table
 */
 
-$sql1 = "CREATE TABLE IF NOT EXISTS `tbl_images` (  
-    `id` int(11) NOT NULL AUTO_INCREMENT,  
-    `name` blob NOT NULL,  
-    PRIMARY KEY (`id`))";
+$sql1 = "CREATE TABLE IF NOT EXISTS `images` (  
+     `id` int(11) NOT NULL AUTO_INCREMENT,  
+  `name` blob NOT NULL,  
+  PRIMARY KEY (`id`)  
+ ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ";
    if (mysqli_query($conn, $sql1))
    {
        echo "Image Table created successfully<br>";

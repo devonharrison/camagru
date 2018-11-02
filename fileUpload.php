@@ -1,6 +1,8 @@
 <?php
+   // include("./config/database.php");
     $currentDir = getcwd();
     $uploads = "/Documents/";
+    $connect = mysqli_connect("localhost", "root", "amogelang", "camagru");
 
     $erros = [];
 
@@ -9,10 +11,27 @@
     $fileName = $_FILES['myfile']['name'];
     $fileSize = $_FILES['myfile']['size'];
     $fileTmpName = $_FILES['myfile']['tmp_name'];
-    $fileTyoe = $_FILES['myfile']['type'];
+    $fileType = $_FILES['myfile']['type'];
+    $picName = basename($fileName);
+    $tagertFilePath = $uploads . $picName;
+    $picType = strtolower(pathinfo($targertFilePath,PATHINFO_EXTENSION));
     $fileExtension = strtolower(end(explode('.', $fileName)));
 
+
     $uploadPath = $currentDir . $uploadDirectory . basename($fileName);
+
+    if (isset($_POST['insert']))
+    {
+        // convert to base64
+        $image_base64 = base64_encode(file_get_contents($fileTmpName));
+        $image = 'data:image/' .$picType. ';base64,' .$image_base64;
+        //$file = addslashes(file_get_contents($fileTmpName));  
+        $query = "INSERT INTO images(name) VALUES ('".$image."')";  
+        if(mysqli_query($connect, $query))  
+        {  
+             echo '<script>alert("Image Inserted into Database")</script>';  
+        }  
+    }
 
     if (isset($_POST['submit']))
     {
@@ -29,7 +48,6 @@
         if(empty($erros))
         {
             $didUpload = move_uploaded_file($fileTmpName, $uploadPath);
-
             if($didUpload)
             {
                 echo "The file " . basename($fileName). " has been uploaded";
