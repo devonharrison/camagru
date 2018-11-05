@@ -1,6 +1,6 @@
 <?php?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US">
 <head>
   <title>Camera</title>
   <link rel="stylesheet" href="web.css">
@@ -12,14 +12,24 @@
   <ul>
       <li id="left"><a id="camagru" href="#home">Camagru</a></li>
       <li class="right"><a class="info" href="../index.php">Logout</a></li>
-      <li class="right"><a class="info" href="#">Settings</a></li>
+      <li class="right"><a class="info" href="../settings.php">Settings</a></li>
   </ul>
-  <div id="parent">
+
+  <div id="camera">
     <video id="video" width="0" height="0" autoplay></video>
     <canvas id="canvas" width="640" height="480"></canvas>
     <a href="#"><img src="../images/camera_icon.png" alt="capture" id="snap"></a>
     <canvas id="canvas2" width="640" height="480"></canvas>
     <script src="webcam.js"></script>
-</div>
+  </div>
+
+  <div id="upload">
+    <form action="fileUpload.php" method="post" enctype="multipart/form-data">
+        Upload a File:
+        <input type="file" name="myfile" id="image">
+        <input type="submit" name="submit" value="Upload" >
+    </form>
+  </div>
+
 </body>
 </html>
