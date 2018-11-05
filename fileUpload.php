@@ -1,12 +1,12 @@
 <?php
    // include("./config/database.php");
     $currentDir = getcwd();
-    $uploads = "/Documents/";
+    $uploads = "Documents/";
     $connect = mysqli_connect("localhost", "root", "amogelang", "camagru");
 
     $erros = [];
 
-    $fileExtensions = ['jpeg', 'png', 'jpg', 'gif']; //which files to be uploaded
+    $fileExtensions = array('jpeg', 'png', 'jpg', 'gif'); //which files to be uploaded
 
     $fileName = $_FILES['myfile']['name'];
     $fileSize = $_FILES['myfile']['size'];
@@ -20,7 +20,7 @@
 
     $uploadPath = $currentDir . $uploadDirectory . basename($fileName);
 
-    if (isset($_POST['insert']))
+  /*  if (isset($_POST['submit']))
     {
         // convert to base64
         $image_base64 = base64_encode(file_get_contents($fileTmpName));
@@ -31,19 +31,31 @@
         {  
              echo '<script>alert("Image Inserted into Database")</script>';  
         }  
-    }
+    }*/
 
     if (isset($_POST['submit']))
     {
-        if (! in_array($fileExtension, $fileExtensions))
+        if ( in_array($picType, $fileExtensions))
         {
-            $erros[] =  "Please choose a photo";
+           // $erros[] =  "Please choose a photo";
+           // convert to base64
+           $image_base64 = base64_encode(file_get_contents($fileTmpName));
+           $image = 'data:image/' .$picType. ';base64,' .$image_base64;
+           //$file = addslashes(file_get_contents($fileTmpName));  
+           $query = "INSERT INTO images(id)(name) VALUES ('".$image."')";  
+            mysqli_query($connect, $query);
+            move_uploaded_file($fileTmpName, $upload.$fileName);
+        /*{  
+             echo '<script>alert("Image Inserted into Database")</script>';  
+        } */ 
         }
 
         if($fileSize > 10000000000)
         {
             $erros[] = " file to big";
         }
+
+        
 
         if(empty($erros))
         {

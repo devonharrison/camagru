@@ -60,7 +60,7 @@ if (mysqli_query($conn, $sql)) {
 image table
 */
 
-$sql1 = "CREATE TABLE IF NOT EXISTS `images` (  
+$sql1 = "CREATE TABLE IF NOT EXISTS `image` (  
      `id` int(11) NOT NULL AUTO_INCREMENT,  
   `name` blob NOT NULL,  
   PRIMARY KEY (`id`)  
