@@ -41,14 +41,12 @@ li a {
     color: #123c69;
 }
 #parent {
-    text-align: center;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
     width: 700px;
+    margin: auto;
     border: solid 2px black;
-}
-div {
-    width: 700px;
-    margin: 100px;
-    display: inline-block;
 }
 
 #canvas {
