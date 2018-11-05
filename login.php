@@ -24,7 +24,7 @@
           session_start();
           $servername = "localhost";
           $dusername = "root";
-          $password = "amogelang";
+          $password = "password";
           $dbname = "camagru";
           $conn = mysqli_connect($servername, $dusername, $password, $dbname);
           if (!$conn)
@@ -55,7 +55,6 @@
                                 {
                                     header('Location: http://localhost:8080/camagru/home.php');
                                 }
-                                
                             }
                         }
                     }

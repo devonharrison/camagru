@@ -28,21 +28,25 @@
         }
         if (isset($_POST['send']))
         {
-            if (empty($_POST['email']))
+            $qry = "SELECT username, email FROM users";
+            $result = mysqli_query($conn, $qry);
+            if (mysqli_num_rows($result) > 0)
             {
-                echo "Empty field <br>";
+                while ($row = mysqli_fetch_assoc($result))
+                {
+                    if ($row['email'] == $_POST['email'])
+                    {
+                        $email = $_POST['email'];
+                        break ;
+                    }
+                }
             }
-            else
-            {
-                $email = $_POST['email'];
-                //$qry = "SELECT email FROM users";
-                //$result = mysqli_query($conn, $qry);
-                $hash = password_hash($email, PASSWORD_DEFAULT);
-                $subject = "Camagru password change";
-                $body = "http://localhost:8080/camagru/changepw.php?action=set&key=$hash";
-                $headers = "From: noreply@camagru.com";
-                mail ($email, $subject, $body, $headers);
-            }
+            $hash = password_hash($email, PASSWORD_DEFAULT);
+            $uniquelink = "http://localhost:8080/camagru/changepw.php?action=set&key=".$hash;
+            $subject = "Camagru password change";
+            $body = $uniquelink;
+            $headers = "From: noreply@camagru.com";
+            mail ($email, $subject, $body, $headers);
         }
     ?>
 </body>
