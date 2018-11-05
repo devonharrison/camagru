@@ -2,7 +2,7 @@
    // include("./config/database.php");
     $currentDir = getcwd();
     $uploads = "Documents/";
-    $connect = mysqli_connect("localhost", "root", "amogelang", "camagru");
+    $connect = mysqli_connect("localhost", "root", "password", "camagru");
 
     $erros = [];
 

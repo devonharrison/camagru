@@ -55,7 +55,6 @@
                                 {
                                     header('Location: http://localhost:8080/camagru/home.php');
                                 }
-                                
                             }
                         }
                     }
