@@ -41,6 +41,7 @@
                     }
                 }
             }
+            //still not working
             $hash = password_hash($email, PASSWORD_DEFAULT);
             $uniquelink = "http://localhost:8080/camagru/changepw.php?action=set&key=".$hash;
             $subject = "Camagru password change";
