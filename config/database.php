@@ -73,17 +73,5 @@ $sql1 = "CREATE TABLE IF NOT EXISTS `image` (
     {
         echo "Error creating table: ".mysqli_error($conn)."<br>";
     }
-
-/*
-$sql = "INSERT INTO $tbl_user (user_id, user_title) VALUES
-(1, ''),
-
-if (mysqli_query($conn, $sql)) {
-    echo "User created successfully<br>";
-} else {
-    echo "Error: " . $sql . "<br>" . mysqli_error($conn)."<br>";
-}
-*/
-
 mysqli_close($conn);
 ?>
