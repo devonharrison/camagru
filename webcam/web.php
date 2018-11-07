@@ -25,7 +25,7 @@
 
   <div id="upload">
     <form action="fileUpload.php" method="post" enctype="multipart/form-data">
-        Upload a File:
+        <label>Upload a File:</label>
         <input type="file" name="myfile" id="image">
         <input type="submit" name="submit" value="Upload" >
     </form>
