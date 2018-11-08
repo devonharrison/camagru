@@ -1,4 +1,7 @@
-<?php?>
+<?php
+   date_default_timezone_set('Africa/CapeTown');
+   include 'comment.inc.php';
+?>
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
@@ -24,12 +27,19 @@
   </div>
 
   <div id="upload">
-    <form action="fileUpload.php" method="post" enctype="multipart/form-data">
+    <form action="../fileUpload.php" method='POST' enctype="multipart/form-data">
         Upload a File:
         <input type="file" name="myfile" id="image">
         <input type="submit" name="submit" value="Upload" >
     </form>
   </div>
-
+  <?php
+    echo"<form method='POST' action='".setComments($connect)."'>
+    <input type='hidden' name='uid' value='Anonymous'>
+    <input type='hidden' name='date' value='".date('Y-m-d H:i:s')."'>
+    <textarea name='message'></textarea><br>
+    <button type='submit' name='commentSubmit'>Comment</button>
+    </form>"
+  ?>
 </body>
 </html>

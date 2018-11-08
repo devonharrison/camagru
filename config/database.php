@@ -60,10 +60,10 @@ if (mysqli_query($conn, $sql)) {
 image table
 */
 
-$sql1 = "CREATE TABLE IF NOT EXISTS `image` (  
-     `id` int(11) NOT NULL AUTO_INCREMENT,  
-  `name` blob NOT NULL,  
-  PRIMARY KEY (`id`)  
+$sql1 = "CREATE TABLE IF NOT EXISTS image (  
+     id int(11) NOT NULL AUTO_INCREMENT,  
+     name blob NOT NULL,  
+     PRIMARY KEY (id)  
  ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ";
    if (mysqli_query($conn, $sql1))
    {
@@ -74,6 +74,20 @@ $sql1 = "CREATE TABLE IF NOT EXISTS `image` (
         echo "Error creating table: ".mysqli_error($conn)."<br>";
     }
 
+$sql2 = "CREATE TABLE IF NOT EXISTS comments (
+    id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    uid VARCHAR(128) NOT NULL,
+    date VARCHAR(128) NOT NULL,
+    message TEXT NOT NULL
+    )";
+    if (mysqli_query($conn, $sql2))
+    {
+        echo "Comment Table created successfully<br>";
+    }
+    else
+    {
+        echo "Error creating table: ".mysqli_error($conn)."<br>";
+    }
 /*
 $sql = "INSERT INTO $tbl_user (user_id, user_title) VALUES
 (1, ''),
