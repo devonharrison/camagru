@@ -80,21 +80,18 @@
                 {
                     if (password_verify($password_2, $hash) == TRUE)
                     {
-                        $add = "INSERT INTO users (name, surname, username, email, password) VALUES('$firstname', '$surname', '$username',
-                        '$email', '$hash')";
-                        $check = "SELECT username FROM users";
-                        $result = mysqli_query($conn, $check);
-                        $num_rows = mysqli_num_rows($result);
+                        $add = "INSERT INTO users (name, surname, username, email, password) VALUES('$firstname',
+                        '$surname', '$username', '$email', '$hash')";
                         $_SESSION['username'] = $username;
                         $_SESSION['success'] = "You are now logged in";
                         mysqli_query($conn, $add);
+                        $uniquelink = password_hash($username, PASSWORD_DEFAULT);
                         /* sends confirmation email with link to login page */
                         $subject = "Camagru registration confirmation";
-                        $body = "http://localhost:8080/camagru/login.php";
+                        $body = "http://localhost:8080/camagru/login.php?key=" . $uniquelink;
                         $headers = "From: noreply@camagru.com";
                         mail ($email, $subject, $body, $headers);
                         echo "Confirmation email sent to ".$email."<br>";
-                        header('Location: http://localhost:8080/camagru/confirmation.php');
                     }
                     else
                     {
