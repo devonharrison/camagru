@@ -3,6 +3,7 @@
     $currentDir = getcwd();
     $uploads = "Documents/";
     $connect = mysqli_connect("localhost", "root", "password", "camagru");
+   // $sqli = "INSERT INTO image(id, name) VALUES()"
 
     $erros = [];
 
@@ -32,7 +33,6 @@
              echo '<script>alert("Image Inserted into Database")</script>';  
         }  
     }*/
-
     if (isset($_POST['submit']))
     {
         if ( in_array($picType, $fileExtensions))
@@ -42,7 +42,7 @@
            $image_base64 = base64_encode(file_get_contents($fileTmpName));
            $image = 'data:image/' .$picType. ';base64,' .$image_base64;
            //$file = addslashes(file_get_contents($fileTmpName));  
-           $query = "INSERT INTO images(id)(name) VALUES ('".$image."')";  
+           $query = "INSERT INTO image(id)(name) VALUES ('".$image."')";  
             mysqli_query($connect, $query);
             move_uploaded_file($fileTmpName, $upload.$fileName);
         /*{  
@@ -77,4 +77,5 @@
             }
         }
     }
+
 ?>
