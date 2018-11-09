@@ -88,7 +88,8 @@
                         $uniquelink = password_hash($username, PASSWORD_DEFAULT);
                         /* sends confirmation email with link to login page */
                         $subject = "Camagru registration confirmation";
-                        $body = "http://localhost:8080/camagru/login.php?key=" . $uniquelink;
+                        $body = "Please click the following link to confirm your registration for your Camagru account. " . 
+                        "http://localhost:8080/camagru/login.php?key=" . $uniquelink;
                         $headers = "From: noreply@camagru.com";
                         mail ($email, $subject, $body, $headers);
                         echo "Confirmation email sent to ".$email."<br>";
