@@ -36,7 +36,7 @@ li a {
     font-size: 250%;
 }
 
-.info {
+.info label{
     font-family: Arial, Helvetica, sans-serif;
     color: #123c69;
 }
@@ -56,7 +56,6 @@ li a {
 
 #snap {
     border: 0;
-    margin: auto;
     width: 80px;
     height: 50px;
 }
