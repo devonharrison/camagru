@@ -33,8 +33,6 @@
         }
         if (isset($_POST['login']))
         {
-            $key = $_GET['key'];
-            echo "hello".$key;
             if (empty($_POST['username']) || empty($_POST['password']))
             {
                 echo "Empty field <br>";
@@ -56,21 +54,16 @@
                         }
                     }
                 }
-                if (isset($_GET['key']))
+                /*if (password_verify($username, $key))
                 {
-                    
-                    /*if (password_verify($username, $key))
+                    if (password_verify($password_1, $pw) == TRUE)
                     {
-                        if (password_verify($password_1, $pw) == TRUE)
-                        {
-                            header('Location: http://localhost:8080/camagru/home.php');
-                            $_SESSION['username'] = $username;
-                            $_SESSION['success'] = "You are now logged in";
-                        }
-                    }*/
-                }
-                $key = $_GET['key'];
-                echo $key;
+                        header('Location: http://localhost:8080/camagru/home.php');
+                        $_SESSION['username'] = $username;
+                        $_SESSION['success'] = "You are now logged in";
+                    }
+                }*/
+                var_dump($_GET);
             }
         }
     ?>
