@@ -60,7 +60,7 @@ if (mysqli_query($conn, $sql)) {
 image table
 */
 
-$sql1 = "CREATE TABLE IF NOT EXISTS image (  
+$sql1 = "CREATE TABLE IF NOT EXISTS images (  
      id int(11) NOT NULL AUTO_INCREMENT,  
      name blob NOT NULL,  
      PRIMARY KEY (id)  
@@ -73,7 +73,6 @@ $sql1 = "CREATE TABLE IF NOT EXISTS image (
     {
         echo "Error creating table: ".mysqli_error($conn)."<br>";
     }
-<<<<<<< HEAD
 
 $sql2 = "CREATE TABLE IF NOT EXISTS comments (
     id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -100,7 +99,5 @@ if (mysqli_query($conn, $sql)) {
 }
 */
 
-=======
->>>>>>> 1ff67f0a1937428f42ae3aee0c69673b1ceb89e4
 mysqli_close($conn);
 ?>

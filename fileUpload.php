@@ -42,7 +42,7 @@
            $image_base64 = base64_encode(file_get_contents($fileTmpName));
            $image = 'data:image/' .$picType. ';base64,' .$image_base64;
            //$file = addslashes(file_get_contents($fileTmpName));  
-           $query = "INSERT INTO image(id)(name) VALUES ('".$image."')";  
+           $query = "INSERT INTO images(id)(name) VALUES ('".$image."')";  
             mysqli_query($connect, $query);
             move_uploaded_file($fileTmpName, $upload.$fileName);
         /*{  

@@ -1,5 +1,6 @@
 <?php
    date_default_timezone_set('Africa/CapeTown');
+   include 'dbh.inc.php';
    include 'comment.inc.php';
 ?>
 <!DOCTYPE html>
