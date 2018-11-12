@@ -1,5 +1,6 @@
 <?php
    date_default_timezone_set('Africa/CapeTown');
+   include 'dbh.inc.php';
    include 'comment.inc.php';
 ?>
 <!DOCTYPE html>
@@ -27,13 +28,8 @@
   </div>
 
   <div id="upload">
-<<<<<<< HEAD
     <form action="fileUpload.php" method="post" enctype="multipart/form-data">
         <label>Upload a File:</label>
-=======
-    <form action="../fileUpload.php" method='POST' enctype="multipart/form-data">
-        Upload a File:
->>>>>>> 2ffdc2fe5f1a690f6d5fa308d69018b1d5c897e6
         <input type="file" name="myfile" id="image">
         <input type="submit" name="submit" value="Upload" >
     </form>

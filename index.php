@@ -15,7 +15,16 @@
         <li id="left"><a id="camagru" href="#home">Camagru</a></li>
         <li class="right"><a class="info" href="login.php">Login</a></li>
         <li class="right"><a class="info" href="signup.php">Sign-up</a></li>
-</ul>
+    </ul>
+
+    <div class="container">
+        <div class="gallery"></div>
+        <div class="gallery"></div>
+        <div class="gallery"></div>
+        <div class="gallery"></div>
+        <div class="gallery"></div>
+        <div class="gallery"></div>
+    </div>
 
 </body>
 </html>
