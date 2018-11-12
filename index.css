@@ -40,3 +40,23 @@ li a {
     font-family: Arial, Helvetica, sans-serif;
     color: #123c69;
 }
+
+.container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-content: space-around;
+    margin-top: 100px;
+    margin-left: 10%;
+    margin-right: 10%;
+    border: 2px solid #123c69;
+}
+
+.gallery {
+    background-color: #eee2dc;
+    border: 1px solid #bab2b5;
+    border-radius: 10px;
+    width: 300px;
+    height: 400px;
+    margin: 10px 10px;
+}
