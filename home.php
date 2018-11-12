@@ -11,7 +11,7 @@
 <body>
     <ul id="top">
         <li id="left"><a id="camagru" href="#home">Camagru</a></li>
-        <li class="right"><a class="info" href="index.php">Logout</a></li>
+        <li class="right"><a class="info" href="index.php" name='logout' >Logout</a></li>
         <li class="right"><a class="info" href="settings.php">Settings</a></li>
     </ul>
 
@@ -20,7 +20,12 @@
      <a href="profile.php"><img src="images/profile.png" alt="profile" id="profile"></a>
     </ul>
     <?php
-
+    session_start();
+        if ($_POST['logout'])
+        {
+            session_unset();
+            session_destroy();
+        }
     ?>
 </body>
 </html>
