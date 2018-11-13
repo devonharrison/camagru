@@ -25,6 +25,8 @@
         <div class="gallery"></div>
         <div class="gallery"></div>
     </div>
-
+    <?php
+        $_SESSION['logged_in'] = "no";
+    ?>
 </body>
 </html>

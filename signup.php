@@ -86,10 +86,11 @@
                         $add = "INSERT INTO users (name, surname, username, email, password) VALUES('$firstname',
                         '$surname', '$username', '$email', '$hash')";
                         mysqli_query($conn, $add);
+                        $hash = password_hash($usernamem, PASSWORD_DEFAULT);
                         /* sends confirmation email with link to login page */
                         $subject = "Camagru registration confirmation";
                         $body = "Please click the following link to confirm your registration for your Camagru account. " . 
-                        "http://localhost:8080/camagru/login.php";
+                        "http://localhost:8080/camagru/login.php?key=".$hash;
                         $headers = "From: noreply@camagru.com";
                         mail ($email, $subject, $body, $headers);
                         echo "Confirmation email sent to ".$email."<br>";
