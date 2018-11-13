@@ -12,4 +12,15 @@
             $result = mysqli_query($connect,$sql);
         }
     }
+
+    function getComments($connect)
+    {
+        $sql = "SELECT * FROM comments";
+        $result = mysqli_query($connect,$sql);
+        while($row = mysqli_fetch_assoc($result))
+        {
+            echo $row['uid']. "<br>";
+            echo $row['message']. "<br><br>";
+        }
+    }
 ?>
