@@ -28,13 +28,8 @@
   </div>
 
   <div id="upload">
-<<<<<<< HEAD
-    <form action="../fileUpload.php" method='POST' enctype="multipart/form-data">
-        Upload a File:
-=======
-    <form action="fileUpload.php" method="post" enctype="multipart/form-data">
+    <form action="../fileUpload.php" method="post" enctype="multipart/form-data">
         <label>Upload a File:</label>
->>>>>>> e60fe8ee1ddac3557886765e19b0d3ee50c455ec
         <input type="file" name="myfile" id="image">
         <input type="submit" name="submit" value="Upload" >
     </form>
@@ -45,7 +40,8 @@
     <input type='hidden' name='date' value='".date('Y-m-d H:i:s')."'>
     <textarea name='message'></textarea><br>
     <button type='submit' name='commentSubmit'>Comment</button>
-    </form>"
+    </form>";
+    getComments($connect);
   ?>
 </body>
 </html>
