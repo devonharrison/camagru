@@ -11,16 +11,31 @@
 <body>
     <ul id="top">
         <li id="left"><a id="camagru" href="#home">Camagru</a></li>
-        <li class="right"><a class="info" href="index.php">Logout</a></li>
+        <li class="right"><a class="info" href="index.php" name='logout' >Logout</a></li>
         <li class="right"><a class="info" href="settings.php">Settings</a></li>
     </ul>
 
+    <div class="container">
+        <div class="gallery"></div>
+        <div class="gallery"></div>
+        <div class="gallery"></div>
+        <div class="gallery"></div>
+        <div class="gallery"></div>
+        <div class="gallery"></div>
+    </div>
+    
     <ul id="bottom">
      <a href="webcam/web.php"><img src="images/upload.png" alt="upload" id="upload"></a>
      <a href="profile.php"><img src="images/profile.png" alt="profile" id="profile"></a>
-    </ul>
+    </ul
+    
     <?php
-
+    session_start();
+        if ($_POST['logout'])
+        {
+            session_unset();
+            session_destroy();
+        }
     ?>
 </body>
 </html>

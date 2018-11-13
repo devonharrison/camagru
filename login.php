@@ -41,29 +41,48 @@
             {
                 $username = $_POST['username'];
                 $password_1 = $_POST['password'];
-                $qry = "SELECT username, password FROM users";
+                $qry = "SELECT username, user_id FROM users";
                 $result = mysqli_query($conn, $qry);
-                $u = 0;
                 if (mysqli_num_rows($result) > 0)
                 {
                     while ($row = mysqli_fetch_assoc($result))
                     {
                         if ($row['username'] == $username)
                         {
-                            $pw = $row['password'];
+                            $user_id = $row['user_id'];
                         }
                     }
                 }
-                /*if (password_verify($username, $key))
+                if ($_SESSION['first'] = 1)
                 {
-                    if (password_verify($password_1, $pw) == TRUE)
+                    if (strcmp($username, $_SESSION['username']) == 0)
                     {
-                        header('Location: http://localhost:8080/camagru/home.php');
-                        $_SESSION['username'] = $username;
-                        $_SESSION['success'] = "You are now logged in";
+                        if (password_verify($password_1, $_SESSION['password']) == TRUE)
+                        {
+                            $pw = $_SESSION['password'];
+                            $add = "UPDATE users SET password='$pw' WHERE user_id=$user_id";
+                            mysqli_query($conn, $add);
+                            //header('Location: http://localhost:8080/camagru/home.php');
+                            $_SESSION['username'] = $username;
+                            $_SESSION['success'] = "You are now logged in";
+                        }
                     }
-                }*/
-                var_dump($_GET);
+                }
+                else
+                {
+                    $qry = "SELECT username, password FROM users";
+                    $result = mysqli_query($conn, $qry);
+                    if (mysqli_num_rows($result) > 0)
+                    {
+                        while ($row = mysqli_fetch_assoc($result))
+                        {
+                            if ($row['username'] == $username)
+                            {
+                                $pw = $row['password'];
+                            }
+                        }
+                    }
+                }
             }
         }
     ?>
