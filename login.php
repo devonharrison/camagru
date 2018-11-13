@@ -53,8 +53,9 @@
                         }
                     }
                 }
-                if ($_SESSION['first'] = 1)
+                if ($_SESSION['first'] = 1) // if(password_verify($password_1, $_GET['key'])) then no need for $_SESSION['first']
                 {
+                    $_SESSION['first'] = 0;
                     if (strcmp($username, $_SESSION['username']) == 0)
                     {
                         if (password_verify($password_1, $_SESSION['password']) == TRUE)
@@ -62,9 +63,9 @@
                             $pw = $_SESSION['password'];
                             $add = "UPDATE users SET password='$pw' WHERE user_id=$user_id";
                             mysqli_query($conn, $add);
-                            //header('Location: http://localhost:8080/camagru/home.php');
                             $_SESSION['username'] = $username;
-                            $_SESSION['success'] = "You are now logged in";
+                            $_SESSION['logged_in'] = "yes";
+                            header('Location: http://localhost:8080/camagru/home.php');
                         }
                     }
                 }
@@ -78,9 +79,27 @@
                         {
                             if ($row['username'] == $username)
                             {
+                                $un = $row['username'];
                                 $pw = $row['password'];
                             }
                         }
+                    }
+                    if (strcmp($username, $un) == 0)
+                    {
+                        if (password_verify($password_1, $pw) == TRUE)
+                        {
+                            $_SESSION['username'] = $username;
+                            $_SESSION['logged_in'] = "yes";
+                            //header('Location: http://localhost:8080/camagru/home.php');
+                        }
+                        else
+                        {
+                            echo "Incorrect password entered";
+                        }
+                    }
+                    else
+                    {
+                        echo "User ".$username." not found";
                     }
                 }
             }
