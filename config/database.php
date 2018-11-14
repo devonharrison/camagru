@@ -48,7 +48,7 @@ User Table
 $sql = "CREATE TABLE IF NOT EXISTS $tbl_users (
 	user_id INT(100) UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL, 
 	name TEXT NOT NULL, surname TEXT NOT NULL, username TEXT NOT NULL,
-    email TEXT NOT NULL, password TEXT NOT NULL)";
+    email TEXT NOT NULL, password TEXT NOT NULL, verified TEXT NOT NULL)";
 	
 if (mysqli_query($conn, $sql)) {
 	echo "User Table created successfully<br>";
@@ -88,16 +88,5 @@ $sql2 = "CREATE TABLE IF NOT EXISTS comments (
     {
         echo "Error creating table: ".mysqli_error($conn)."<br>";
     }
-/*
-$sql = "INSERT INTO $tbl_user (user_id, user_title) VALUES
-(1, ''),
-
-if (mysqli_query($conn, $sql)) {
-    echo "User created successfully<br>";
-} else {
-    echo "Error: " . $sql . "<br>" . mysqli_error($conn)."<br>";
-}
-*/
-
 mysqli_close($conn);
 ?>
