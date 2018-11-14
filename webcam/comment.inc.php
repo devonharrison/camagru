@@ -17,10 +17,13 @@
     {
         $sql = "SELECT * FROM comments";
         $result = mysqli_query($connect,$sql);
-        while($row = mysqli_fetch_assoc($result))
+        if (mysqli_fetch_assoc($result) > 0)
         {
-            echo $row['uid']. "<br>";
-            echo $row['message']. "<br><br>";
+            while($row = mysqli_fetch_assoc($result))
+            {
+                echo $row['uid']. "<br>";
+                echo $row['message']. "<br>";
+            }
         }
     }
 ?>
