@@ -33,7 +33,7 @@ li a {
 #camagru {
     font-family: cursive;
     color: #ac3b61;
-    font-size: 250%;
+    font-size: 300%;
 }
 
 .info {
@@ -49,7 +49,6 @@ li a {
     margin-top: 100px;
     margin-left: 10%;
     margin-right: 10%;
-    border: 2px solid #123c69;
 }
 
 .gallery {

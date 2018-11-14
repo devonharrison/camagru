@@ -27,7 +27,7 @@
     <ul id="bottom">
      <a href="webcam/web.php"><img src="images/upload.png" alt="upload" id="upload"></a>
      <a href="profile.php"><img src="images/profile.png" alt="profile" id="profile"></a>
-    </ul
+    </ul>
     
     <?php
     session_start();
