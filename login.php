@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en-US">
     <head>
@@ -21,7 +24,6 @@
         </form>
     </div>
     <?php
-        session_start();
         $servername = "localhost";
         $dusername = "root";
         $password = "password";
@@ -41,7 +43,7 @@
             {
                 $username = $_POST['username'];
                 $password_1 = $_POST['password'];
-                $qry = "SELECT username, user_id FROM users";
+                $qry = "SELECT username, password, verified FROM users";
                 $result = mysqli_query($conn, $qry);
                 if (mysqli_num_rows($result) > 0)
                 {
@@ -49,48 +51,21 @@
                     {
                         if ($row['username'] == $username)
                         {
-                            $user_id = $row['user_id'];
+                            $un = $row['username'];
+                            $pw = $row['password'];
+                            $ver = $row['verified'];
                         }
                     }
                 }
-                if ($_SESSION['first'] = 1) // if(password_verify($password_1, $_GET['key'])) then no need for $_SESSION['first']
+                if ($ver == 'yes')
                 {
-                    $_SESSION['first'] = 0;
-                    if (strcmp($username, $_SESSION['username']) == 0)
-                    {
-                        if (password_verify($password_1, $_SESSION['password']) == TRUE)
-                        {
-                            $pw = $_SESSION['password'];
-                            $add = "UPDATE users SET password='$pw' WHERE user_id=$user_id";
-                            mysqli_query($conn, $add);
-                            $_SESSION['username'] = $username;
-                            $_SESSION['logged_in'] = "yes";
-                            header('Location: http://localhost:8080/camagru/home.php');
-                        }
-                    }
-                }
-                else
-                {
-                    $qry = "SELECT username, password FROM users";
-                    $result = mysqli_query($conn, $qry);
-                    if (mysqli_num_rows($result) > 0)
-                    {
-                        while ($row = mysqli_fetch_assoc($result))
-                        {
-                            if ($row['username'] == $username)
-                            {
-                                $un = $row['username'];
-                                $pw = $row['password'];
-                            }
-                        }
-                    }
                     if (strcmp($username, $un) == 0)
                     {
                         if (password_verify($password_1, $pw) == TRUE)
                         {
                             $_SESSION['username'] = $username;
                             $_SESSION['logged_in'] = "yes";
-                            //header('Location: http://localhost:8080/camagru/home.php');
+                            header('Location: http://localhost:8080/camagru/home.php');
                         }
                         else
                         {
@@ -101,6 +76,10 @@
                     {
                         echo "User ".$username." not found";
                     }
+                }
+                else
+                {
+                    echo "User " . $username . " not verified yet, please click the link sent to " . $_SESSION['email'] . " to verify your account.";
                 }
             }
         }
