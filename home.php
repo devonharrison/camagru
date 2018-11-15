@@ -9,11 +9,11 @@
 </head>
 
 <body>
-    <ul id="top">
-        <li id="left"><a id="camagru" href="#home">Camagru</a></li>
-        <li class="right"><a class="info" href="index.php" name='logout' >Logout</a></li>
-        <li class="right"><a class="info" href="settings.php">Settings</a></li>
-    </ul>
+    <div class="top">
+        <a class="camagru" href="#home">Camagru</a>
+        <a class="info" href="index.php" name='logout' >Logout</a>
+        <a class="info" href="settings.php">Settings</a>
+    </div>
 
     <div class="container">
         <div class="gallery"></div>
@@ -28,7 +28,6 @@
      <a href="webcam/web.php"><img src="images/upload.png" alt="upload" id="upload"></a>
      <a href="profile.php"><img src="images/profile.png" alt="profile" id="profile"></a>
     </ul>
-    
     <?php
     session_start();
         if ($_POST['logout'])
