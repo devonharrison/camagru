@@ -5,37 +5,40 @@
     $dusername = "root";
     $password = "password";
     $dbname = "camagru";
-    $conn = mysqli_connect($servername, $dusername, $password, $dbname);
-    if (!$conn)
-    {
-        die("Connection failed: " . mysqli_connect_error()."<br>");
-    }
+    $DB_DSN='mysql:host=localhost;dbname=camagru';
     if(password_verify($_SESSION['username'], $key))
     {
         $username = $_SESSION['username'];
-        $qry = "SELECT username, user_id FROM users";
-        $result = mysqli_query($conn, $qry);
-        if (mysqli_num_rows($result) > 0)
+        try
         {
-            while ($row = mysqli_fetch_assoc($result))
+            $conn = new PDO($DB_DSN, $dusername, $password);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $qry = "SELECT username, user_id FROM users";
+            $res = $conn->query($qry);
+            while ($new = $res->fetch())
             {
-                if ($row['username'] == $username)
+                if ($new['username'] == $username)
                 {
-                    $id = $row["user_id"];
+                    $id = $new['user_id'];
                 }
             }
+            $add = "UPDATE users SET verified='yes' WHERE user_id=$id";
+            if ($conn->query($add))
+            {
+                echo "Account information updated <br>";
+            }
+            else
+            {
+                $_SESSION['verified'] = "no";
+            }
+            $_SESSION['logged_in'] = "yes";
+            header('Location: http://localhost:8080/camagru/login.php');
+            echo "User ". $_SESSION['username'] . " successfully registered <br>";
         }
-        $add = "UPDATE users SET verified='yes' WHERE user_id=$id";
-        if (mysqli_query($conn, $add))
+        catch (PDOException $e)
         {
-            echo "Account information updated <br>";
+            echo "Connect Failure: " . $e->getMessage();
         }
-        $_SESSION['logged_in'] = "yes";
-        //header('Location: http://localhost:8080/camagru/login.php');
-        echo "User ". $_SESSION['username'] . " successfully registered <br>Please wait 3 seconds to be redirected to login page.";
     }
-    else
-    {
-        $_SESSION['verified'] = "no";
-    }
+    $conn = null;
 ?>

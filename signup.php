@@ -60,62 +60,58 @@
                 {
                     $conn = new PDO($DB_DSN, $dusername, $password);
                     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                    $sql = $conn->prepare("SELECT username, email FROM users");
-                    echo "erfgeqrwgrtyjhuyj";
-                    $sql->excecute();
-                    while ($result = $sql->fetch(PDO::FETCH_ASSOC))
+                    $str = "SELECT * FROM users";
+                    $res = $conn->query($str);
+                    $u = 0;
+                    while ($new = $res->fetch())
                     {
-                        echo $result['username'] . "<br>";
+                        if ($new['username'] == $username)
+                        {
+                            echo "Username " . $username . " already taken<br>";
+                            $u = 1;
+                        }
+                        if ($new['email'] == $email)
+                        {
+                            echo "Email address " . $email . " already used<br>";
+                            $u = 1;
+                        }
                     }
-                    echo "ergewrgwerg";
+                    if ($u == 0)
+                    {
+                        if (password_verify($password_2, $hash) == TRUE)
+                        {
+                            if (ctype_lower($password_2) == TRUE)
+                            {
+                                echo "Password is too weak, add some symbols, numbers, you know? Stuff like that";
+                            }
+                            else
+                            {
+                                $_SESSION['username'] = $username;
+                                $_SESSION['password'] = $hash;
+                                $_SESSION['email'] = $email;
+                                $add = "INSERT INTO users (name, surname, username, email, password, verified) VALUES('$firstname',
+                                '$surname', '$username', '$email', '$hash', 'no')";
+                                $res = $conn->query($add);
+                                $hash = password_hash($username, PASSWORD_DEFAULT);
+                                /* sends confirmation email with link to login page */
+                                $subject = "Camagru registration confirmation";
+                                $body = "Please click the following link to confirm your registration for your Camagru account. " . 
+                                "http://localhost:8080/camagru/verify.php?key=".$hash;
+                                $headers = "From: noreply@camagru.com";
+                                mail ($email, $subject, $body, $headers);
+                                echo "Confirmation email sent to ".$email."<br>";    
+                            }
+                        }
+                        else
+                        {
+                            echo "Passwords do not match, please re-enter passwords";
+                        }
+                    }
                 }
                 catch(PDOException $e)
                 {
                     echo "Error: " . $e->getMessage();
                 }
-                /*$qry = "SELECT username, email FROM users";
-                $result = mysqli_query($conn, $qry);
-                $u = 0;
-                if (mysqli_num_rows($result) > 0)
-                {
-                    while ($row = mysqli_fetch_assoc($result))
-                    {
-                        if ($row['username'] == $username)
-                        {
-                            echo "Username ".$username." taken.<br>";
-                            $u = 1;
-                        }
-                        if ($row['email'] == $email)
-                        {
-                            echo "Email ".$email." already used.<br>";
-                            $u = 1;
-                        }
-                    }
-                }
-                if ($u == 0)
-                {
-                    if (password_verify($password_2, $hash) == TRUE)
-                    {
-                        $_SESSION['username'] = $username;
-                        $_SESSION['password'] = $hash;
-                        $_SESSION['email'] = $email;
-                        $add = "INSERT INTO users (name, surname, username, email, password, verified) VALUES('$firstname',
-                        '$surname', '$username', '$email', '$hash', 'no')";
-                        mysqli_query($conn, $add);
-                        $hash = password_hash($usernamem, PASSWORD_DEFAULT);
-                        /* sends confirmation email with link to login page 
-                        $subject = "Camagru registration confirmation";
-                        $body = "Please click the following link to confirm your registration for your Camagru account. " . 
-                        "http://localhost:8080/camagru/verify.php?key=".$hash;
-                        $headers = "From: noreply@camagru.com";
-                        mail ($email, $subject, $body, $headers);
-                        echo "Confirmation email sent to ".$email."<br>";
-                    }
-                    else
-                    {
-                        echo "Passwords do not match, please re-enter passwords";
-                    }
-                }*/
             }
         }
         $conn = null;
