@@ -20,18 +20,21 @@
   </ul>
 
   <div id="camera">
+  <form method="POST" action="storeimage.php">
     <video id="video" width="0" height="0" autoplay></video>
     <canvas id="canvas" width="640" height="480"></canvas>
     <a href="#"><img src="../images/camera_icon.png" alt="capture" id="snap"></a>
+    <input type="hidden" name="image" id="img">
     <canvas id="canvas2" width="640" height="480"></canvas>
     <script src="webcam.js"></script>
+    <button type="Submit" class="btn btn-success">Save</button>
   </div>
 
   <div id="upload">
-    <form action="../fileUpload.php" method="post" enctype="multipart/form-data">
+    <form action="../fileUpload.php" method="POST" enctype="multipart/form-data">
         <label>Upload a File:</label>
-        <input type="file" name="myfile" id="image">
-        <input type="submit" name="submit" value="Upload" >
+        <input type="file" name="file" id="image">
+        <input type="submit" name="but_upload" value="Save name" >
     </form>
   </div>
   <?php

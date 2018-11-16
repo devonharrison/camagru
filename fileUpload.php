@@ -1,81 +1,32 @@
 <?php
-   // include("./config/database.php");
+    // include("./config/database.php");
     $currentDir = getcwd();
-    $uploads = "Documents/";
+    $uploads = "upload/";
     $connect = mysqli_connect("localhost", "root", "password", "camagru");
-   // $sqli = "INSERT INTO image(id, name) VALUES()"
 
-    $erros = [];
-
-    $fileExtensions = array('jpeg', 'png', 'jpg', 'gif'); //which files to be uploaded
-
-    $fileName = $_FILES['myfile']['name'];
-    $fileSize = $_FILES['myfile']['size'];
-    $fileTmpName = $_FILES['myfile']['tmp_name'];
-    $fileType = $_FILES['myfile']['type'];
-    $picName = basename($fileName);
-    $tagertFilePath = $uploads . $picName;
-    $picType = strtolower(pathinfo($targertFilePath,PATHINFO_EXTENSION));
-    $fileExtension = strtolower(end(explode('.', $fileName)));
-
-
-    $uploadPath = $currentDir . $uploadDirectory . basename($fileName);
-
-  /*  if (isset($_POST['submit']))
-    {
-        // convert to base64
-        $image_base64 = base64_encode(file_get_contents($fileTmpName));
-        $image = 'data:image/' .$picType. ';base64,' .$image_base64;
-        //$file = addslashes(file_get_contents($fileTmpName));  
-        $query = "INSERT INTO images(name) VALUES ('".$image."')";  
-        if(mysqli_query($connect, $query))  
-        {  
-             echo '<script>alert("Image Inserted into Database")</script>';  
-        }  
-    }*/
-    if (isset($_POST['submit']))
-    {
-        if ( in_array($picType, $fileExtensions))
-        {
-           // $erros[] =  "Please choose a photo";
-           // convert to base64
-           $image_base64 = base64_encode(file_get_contents($fileTmpName));
-           $image = 'data:image/' .$picType. ';base64,' .$image_base64;
-           //$file = addslashes(file_get_contents($fileTmpName));  
-           $query = "INSERT INTO images(id)(name) VALUES ('".$image."')";  
-            mysqli_query($connect, $query);
-            move_uploaded_file($fileTmpName, $upload.$fileName);
-        /*{  
-             echo '<script>alert("Image Inserted into Database")</script>';  
-        } */ 
-        }
-
-        if($fileSize > 10000000000)
-        {
-            $erros[] = " file to big";
-        }
-
+    if(isset($_POST['but_upload'])){
+ 
+        $name = $_FILES['file']['name'];
+        $target_dir = "upload/";
+        $target_file = $target_dir . basename($_FILES["file"]["name"]);
+       
+        // Select file type
+        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+       
+        // Valid file extensions
+        $extensions_arr = array("jpg","jpeg","png","gif");
+       
+        // Check extension
+        if( in_array($imageFileType,$extensions_arr) ){
         
-
-        if(empty($erros))
-        {
-            $didUpload = move_uploaded_file($fileTmpName, $uploadPath);
-            if($didUpload)
-            {
-                echo "The file " . basename($fileName). " has been uploaded";
-            }
-            else
-            {
-                echo " Something went wrong. Try again or contact the very cool admin";
-            }
+         // Insert record
+         $query = "insert into images(name) values('".$name."')";
+         mysqli_query($con,$query);
+         
+         // Upload file
+         move_uploaded_file($_FILES['file']['tmp_name'],$target_dir.$name);
+       
         }
-        else
-        {
-            foreach ($erros as $erros)
-            {
-                echo $error . "these are the errors" . " \n";
-            }
-        }
-    }
-
+        
+       }
 ?>
