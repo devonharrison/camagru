@@ -28,10 +28,13 @@
         $dusername = "root";
         $password = "password";
         $dbname = "camagru";
-        $conn = mysqli_connect($servername, $dusername, $password, $dbname);
-        if (!$conn)
-        {
-            die("Connection failed: " . mysqli_connect_error()."<br>");
+        $DB_DSN='mysql:host=localhost;dbname=camagru';
+        try {
+            $conn = new PDO($DB_DSN, $username, $password);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        }
+        catch (PDOException $e) {
+            echo "Connect Failure: " . $e->getMessage();
         }
         if (isset($_POST['login']))
         {
@@ -43,19 +46,24 @@
             {
                 $username = $_POST['username'];
                 $password_1 = $_POST['password'];
-                $qry = "SELECT username, password, verified FROM users";
-                $result = mysqli_query($conn, $qry);
-                if (mysqli_num_rows($result) > 0)
+                try
                 {
-                    while ($row = mysqli_fetch_assoc($result))
+                    $qry = "SELECT username, password, verified FROM users";
+                    if (mysqli_num_rows($result) > 0)
                     {
-                        if ($row['username'] == $username)
+                        while ($row = mysqli_fetch_assoc($result))
                         {
-                            $un = $row['username'];
-                            $pw = $row['password'];
-                            $ver = $row['verified'];
+                            if ($row['username'] == $username)
+                            {
+                                $un = $row['username'];
+                                $pw = $row['password'];
+                                $ver = $row['verified'];
+                            }
                         }
                     }
+                }
+                catch()
+                {
                 }
                 if ($ver == 'yes')
                 {
