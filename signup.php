@@ -36,11 +36,8 @@
         $dusername = "root";
         $password = "password";
         $dbname = "camagru";
-        $conn = mysqli_connect($servername, $dusername, $password, $dbname);
-        if (!$conn)
-        {
-            die("Connection failed: " . mysqli_connect_error()."<br>");
-        }
+        $DB_DSN='mysql:host=localhost;dbname=camagru';
+
         /*checks if the register button is clicked, if clicked it saves all the information
         from the form in corresponding variables*/
         if (isset($_POST['reg_user']))
@@ -59,7 +56,24 @@
                 $password_1 = $_POST['password'];
                 $password_2 =  $_POST['cpassword'];
                 $hash = password_hash($password_1, PASSWORD_DEFAULT);
-                $qry = "SELECT username, email FROM users";
+                try
+                {
+                    $conn = new PDO($DB_DSN, $dusername, $password);
+                    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                    $sql = $conn->prepare("SELECT username, email FROM users");
+                    echo "erfgeqrwgrtyjhuyj";
+                    $sql->excecute();
+                    while ($result = $sql->fetch(PDO::FETCH_ASSOC))
+                    {
+                        echo $result['username'] . "<br>";
+                    }
+                    echo "ergewrgwerg";
+                }
+                catch(PDOException $e)
+                {
+                    echo "Error: " . $e->getMessage();
+                }
+                /*$qry = "SELECT username, email FROM users";
                 $result = mysqli_query($conn, $qry);
                 $u = 0;
                 if (mysqli_num_rows($result) > 0)
@@ -89,7 +103,7 @@
                         '$surname', '$username', '$email', '$hash', 'no')";
                         mysqli_query($conn, $add);
                         $hash = password_hash($usernamem, PASSWORD_DEFAULT);
-                        /* sends confirmation email with link to login page */
+                        /* sends confirmation email with link to login page 
                         $subject = "Camagru registration confirmation";
                         $body = "Please click the following link to confirm your registration for your Camagru account. " . 
                         "http://localhost:8080/camagru/verify.php?key=".$hash;
@@ -101,9 +115,10 @@
                     {
                         echo "Passwords do not match, please re-enter passwords";
                     }
-                }
+                }*/
             }
         }
+        $conn = null;
     ?>
 </div>
 </body>

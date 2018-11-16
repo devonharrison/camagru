@@ -58,7 +58,7 @@ try
         date VARCHAR(128) NOT NULL,
         message TEXT NOT NULL)";
     $conn->exec($comments);
-    echo "[INFO] Comment table creation successful<br>";
+    echo "[INFO] Comment table created successfully<br>";
 }
 catch(PDOException $e)
 {
