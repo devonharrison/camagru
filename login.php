@@ -29,13 +29,6 @@
         $password = "password";
         $dbname = "camagru";
         $DB_DSN='mysql:host=localhost;dbname=camagru';
-        try {
-            $conn = new PDO($DB_DSN, $username, $password);
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        }
-        catch (PDOException $e) {
-            echo "Connect Failure: " . $e->getMessage();
-        }
         if (isset($_POST['login']))
         {
             if (empty($_POST['username']) || empty($_POST['password']))
@@ -48,49 +41,51 @@
                 $password_1 = $_POST['password'];
                 try
                 {
+                    $conn = new PDO($DB_DSN, $dusername, $password);
+                    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                     $qry = "SELECT username, password, verified FROM users";
-                    if (mysqli_num_rows($result) > 0)
+                    $res = $conn->query($qry);
+                    while ($new = $res->fetch())
                     {
-                        while ($row = mysqli_fetch_assoc($result))
+                        if ($new['username'] == $username)
                         {
-                            if ($row['username'] == $username)
-                            {
-                                $un = $row['username'];
-                                $pw = $row['password'];
-                                $ver = $row['verified'];
-                            }
+                            $un = $new['username'];
+                            $pw = $new['password'];
+                            $ver = $new['verified'];
                         }
                     }
-                }
-                catch()
-                {
-                }
-                if ($ver == 'yes')
-                {
-                    if (strcmp($username, $un) == 0)
+                    if ($ver == 'yes')
                     {
-                        if (password_verify($password_1, $pw) == TRUE)
+                        if (strcmp($username, $un) == 0)
                         {
-                            $_SESSION['username'] = $username;
-                            $_SESSION['logged_in'] = "yes";
-                            header('Location: http://localhost:8080/camagru/home.php');
+                            if (password_verify($password_1, $pw) == TRUE)
+                            {
+                                $_SESSION['username'] = $username;
+                                $_SESSION['logged_in'] = "yes";
+                                header('Location: http://localhost:8080/camagru/home.php');
+                            }
+                            else
+                            {
+                                echo "Incorrect password entered";
+                            }
                         }
                         else
                         {
-                            echo "Incorrect password entered";
+                            echo "User ".$username." not found";
                         }
                     }
                     else
                     {
-                        echo "User ".$username." not found";
+                        echo "User " . $username . " not verified yet, please click the link sent to " . $_SESSION['email'] . " to verify your account.";
                     }
                 }
-                else
+                catch (PDOException $e)
                 {
-                    echo "User " . $username . " not verified yet, please click the link sent to " . $_SESSION['email'] . " to verify your account.";
+                    echo "Connect Failure: " . $e->getMessage();
                 }
             }
         }
+        $conn = null;
     ?>
 </body>
 </html>
