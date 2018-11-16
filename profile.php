@@ -2,18 +2,27 @@
 <html lang="en-US">
 
 <head>
-    <title>Camagru</title>
+    <title>Profile</title>
     <link rel="stylesheet" href="home.css">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 
 <body>
-    <ul id="top">
-        <li id="left"><a id="camagru" href="#home">Camagru</a></li>
-        <li class="right"><a class="info" href="index.php">Logout</a></li>
-        <li class="right"><a class="info" href="settings.php">Settings</a></li>
-    </ul>
+    <div class="top">
+        <a class="camagru" href="#home">Camagru</a>
+        <a class="info" href="index.php" name='logout' >Logout</a>
+        <a class="info" href="settings.php">Settings</a>
+    </div>
+
+    <div class="container">
+        <div class="gallery"></div>
+        <div class="gallery"></div>
+        <div class="gallery"></div>
+        <div class="gallery"></div>
+        <div class="gallery"></div>
+        <div class="gallery"></div>
+    </div>
 
 </body>
 </html>
