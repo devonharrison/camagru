@@ -42,9 +42,7 @@ body {
     flex-flow: row wrap;
     justify-content: space-around;
     align-content: space-around;
-    margin-left: 10%;
-    margin-right: 10%;
-    margin-bottom: 15%;
+    margin: 15% 10%;
 }
 
 .gallery {
