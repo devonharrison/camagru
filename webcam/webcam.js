@@ -13,16 +13,20 @@ if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)
    });
 }
 
-var img2 = new Image();
-//img2.src = 'http://chittagongit.com//images/photo-booth-icon-png/photo-booth-icon-png-12.jpg';
+
+var image = new Image();
 
 setInterval(() => {
 	context.drawImage(video, 0, 0, 640, 480);
-	context.drawImage(img2,0,0,640,480);
+    context.drawImage(image,0,0,640,480);
+    image_format: 'jpeg';
+    jpeg_quality: 90
 }, 16);
 
 // Trigger photo take
 document.getElementById("snap").addEventListener("click", function() {
 	context2.drawImage(video, 0, 0, 640, 480);
-	context2.drawImage(img2,0,0,640,480);
+    // context2.drawImage(image,0,0,640,480);
+    document.getElementById("img").value = canvas2.toDataURL();
 });
+
