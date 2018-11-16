@@ -3,15 +3,55 @@ body {
     margin: 0;
 }
 
-#top {
-    list-style-type: none;
+.top {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    position: fixed;
-    top: 0;
     width: 100%;
+    height: 100px;
     background-color: #eee2dc;
+}
+
+.camagru {
+    float: left;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    font-family: cursive;
+    color: #ac3b61;
+    font-size: 300%;
+    padding-left: 20px;
+    padding-top: 10px;
+}
+
+.info {
+    float: right;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    padding-top: 50px;
+    padding-right: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #123c69;
+}
+
+.container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-content: space-around;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 20%;
+}
+
+.gallery {
+    background-color: #eee2dc;
+    border: 1px solid #bab2b5;
+    border-radius: 10px;
+    width: 300px;
+    height: 400px;
+    margin: 10px 10px;
 }
 
 #bottom {
@@ -25,66 +65,18 @@ body {
     background-color: #eee2dc;
 }
 
-li a {
-    display: block;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none; 
-}
-
-#left {
-    float: left;
-}
-
-.right {
-    padding-top: 35px;
-    float: right;
-}
-
-#camagru {
-    font-family: cursive;
-    color: #ac3b61;
-    font-size: 300%;
-}
-
-.info {
-    font-family: Arial, Helvetica, sans-serif;
-    color: #123c69;
-}
-
-.container {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-    align-content: space-around;
-    margin-top: 100px;
-    margin-left: 10%;
-    margin-right: 10%;
-}
-
-.gallery {
-    background-color: #eee2dc;
-    border: 1px solid #bab2b5;
-    border-radius: 10px;
-    width: 300px;
-    height: 400px;
-    margin: 10px 10px;
-}
-
 #upload {
     padding-left: 30%;
     float: left;
     border-right: 1px solid #edc7b7;
-    border-left: 1px solid #edc7b7;
     width: 160px;
     height: 100px;
 }
 
 #profile {
     padding-right: 30%;
-    float: right;
+    float: left;
     border-right: 1px solid #edc7b7;
-    border-left: 1px solid #edc7b7;
     width: 160px;
     height: 100px;
 }

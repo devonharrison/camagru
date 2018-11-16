@@ -11,6 +11,7 @@
 </head>
 
 <body>
+<div class="main">
     <ul>
         <li id="left"><a id="camagru" href="#home">Camagru</a></li>
         <li class="right"><a class="info" href="login.php">Login</a></li>
@@ -25,6 +26,7 @@
         <div class="gallery"></div>
         <div class="gallery"></div>
     </div>
+</div>
     <?php
         $_SESSION['logged_in'] = "no";
     ?>
