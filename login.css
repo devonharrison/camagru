@@ -23,24 +23,27 @@ h2 {
 label {
     color: #123c69;
     font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
 }
 .form {
     width: 450px;
     margin: 0 auto;
+    padding: 8px;
 }
 .inputvalues {
-    width: 430px;
+    width: 426px;
     margin: 0 auto;
-    padding: 8px;
+    padding: 10px;
+    border-radius: 10px;
 }
 #login_btn {
     background-color: #bab2b5;
-    padding: 8px;
-    margin: 10px;
+    padding: 10px;
+    margin: 12px;
     color: #123c69;
-    width: 430px;
+    width: 420px;
     text-align: center;
     font-family: 'Courier New', Courier, monospace;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
 }

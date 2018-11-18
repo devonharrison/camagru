@@ -13,8 +13,8 @@
 <body>
 <div class="top">
         <a class="camagru" href="#home">Camagru</a>
-        <a class="info" href="index.php" name='logout' >Logout</a>
-        <a class="info" href="settings.php">Settings</a>
+        <a class="info" href="login.php" name='login' >Login</a>
+        <a class="info" href="signup.php" name='signup'>Sign-up</a>
     </div>
 
     <div class="container">
