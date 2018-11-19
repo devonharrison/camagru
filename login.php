@@ -76,7 +76,7 @@
                     }
                     else
                     {
-                        echo "User " . $username . " not verified yet, please click the link sent to " . $_SESSION['email'] . " to verify your account.";
+                        echo "User " . $username . " not found, please verify your account or signup";
                     }
                 }
                 catch (PDOException $e)
