@@ -11,11 +11,11 @@
 </head>
 
 <body>
-    <ul>
-        <li id="left"><a id="camagru" href="#home">Camagru</a></li>
-        <li class="right"><a class="info" href="login.php">Login</a></li>
-        <li class="right"><a class="info" href="signup.php">Sign-up</a></li>
-    </ul>
+<div class="top">
+        <a class="camagru" href="#home">Camagru</a>
+        <a class="info" href="login.php" name='login' >Login</a>
+        <a class="info" href="signup.php" name='signup'>Sign-up</a>
+    </div>
 
     <div class="container">
         <div class="gallery"></div>

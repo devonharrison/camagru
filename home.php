@@ -15,13 +15,13 @@
         <a class="info" href="settings.php">Settings</a>
     </div>
 
-    <div class="container">
-        <div class="gallery"></div>
-        <div class="gallery"></div>
-        <div class="gallery"></div>
-        <div class="gallery"></div>
-        <div class="gallery"></div>
-        <div class="gallery"></div>
+    <div class="row">
+        <div class="column"></div>
+        <div class="column"></div>
+        <div class="column"></div>
+        <div class="column"></div>
+        <div class="column"></div>
+        <div class="column"></div>
     </div>
     
     <ul id="bottom">

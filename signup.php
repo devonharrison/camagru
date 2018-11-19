@@ -25,7 +25,7 @@
         <label>Password:</label><br>
         <input type="password" name="password" class="inputvalues" placeholder="Enter a password"/><br>
         <label>Confirm Password:</label><br>
-        <input type="password" name="cpassword" class="inputvalues" placeholder="Confrim password"/><br>
+        <input type="password" name="cpassword" class="inputvalues" placeholder="Confirm password"/><br>
         <button id="reg_btn" type="submit" name="reg_user">Register</button>
     </form>
     <?php
