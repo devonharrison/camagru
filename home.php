@@ -10,11 +10,18 @@
 
 <body>
     <div class="top">
+        <div class="menu">
+            <img src="images/menu.png" alt="menu" id="icon">
+            <div class="content">
+                <a href="webcam/web.php">Upload</a>
+                <a href="profile.php">Profile</a>
+                <a href="index.php">Logout</a>
+            </div>
+        </div>
         <a class="camagru" href="#home">Camagru</a>
-        <a class="info" href="index.php" name='logout' >Logout</a>
-        <a class="info" href="settings.php">Settings</a>
     </div>
 
+    <div class="container">
     <div class="row">
         <div class="column"></div>
         <div class="column"></div>
@@ -23,11 +30,7 @@
         <div class="column"></div>
         <div class="column"></div>
     </div>
-    
-    <ul id="bottom">
-     <a href="webcam/web.php"><img src="images/upload.png" alt="upload" id="upload"></a>
-     <a href="profile.php"><img src="images/profile.png" alt="profile" id="profile"></a>
-    </ul>
+</div>
     <?php
     session_start();
         if ($_POST['logout'])

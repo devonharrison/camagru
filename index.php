@@ -17,13 +17,13 @@
         <a class="info" href="signup.php" name='signup'>Sign-up</a>
     </div>
 
-    <div class="container">
-        <div class="gallery"></div>
-        <div class="gallery"></div>
-        <div class="gallery"></div>
-        <div class="gallery"></div>
-        <div class="gallery"></div>
-        <div class="gallery"></div>
+    <div class="row">
+        <div class="column"></div>
+        <div class="column"></div>
+        <div class="column"></div>
+        <div class="column"></div>
+        <div class="column"></div>
+        <div class="column"></div>
     </div>
     <?php
         $_SESSION['logged_in'] = "no";
