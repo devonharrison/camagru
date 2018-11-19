@@ -11,6 +11,10 @@
     <div>
         <center><h2>Forgot password</h2></center>
         <form class="form" action="login.php" method="post">
+            <label>User name:</label><br>
+            <input type="text" name="username" class="inputvalues" placeholder="Enter username"/><br>
+            <label>Unique code:</label><br>
+            <input type="text" name="ucode" class="inputvalues" placeholder="Enter code"/><br>
             <label>New password:</label><br>
             <input type="password" name="password" class="inputvalues" placeholder="Enter new password"/><br>
             <label>Confirm password:</label><br>
@@ -19,45 +23,50 @@
         </form>
     </div>
     <?php
-          $servername = "localhost";
-          $dusername = "root";
-          $password = "password";
-          $dbname = "camagru";
-          $conn = mysqli_connect($servername, $dusername, $password, $dbname);
-          if (!$conn)
-          {
-              die("Connection failed: " . mysqli_connect_error()."<br>");
-          }
-            if (isset($_POST['change']))
+        session_start();
+        $servername = "localhost";
+        $dusername = "root";
+        $password = "password";
+        $dbname = "camagru";
+        $DB_DSN='mysql:host=localhost;dbname=camagru';
+        if (isset($_POST['change']))
+        {
+            if (empty($_POST['password']) || empty($_POST['cpassword']) || empty($_POST['ucode']) || empty($_POST['username']))
             {
-                if (empty($_POST['password']) || empty($_POST['cpassword']))
+                echo "Empty field <br>";
+            }
+            else
+            {
+                $pw = $_POST['cpassword'];
+                $hash = password_hash($_POST['password'], PASSWORD_DEFAULT);
+                try
                 {
-                    echo "Empty field <br>";
-                }
-                else
-                {
-                    $pw = $_POST['cpassword'];
-                    $hash = password_hash($_POST['password'], PASSWORD_DEFAULT);
+                    $conn = new PDO($DB_DSN, $dusername, $password);
+                    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                     if (password_verify($pw, $hash) == TRUE)
                     {
-                        $qry = "UPDATE password FROM users";
-                        $result = mysqli_query($conn, $qry);
-                        if (mysqli_num_rows($result) > 0)
+                        if ($_POST['ucode'] == $_SESSION['code'] && $_POST['username'] == $_SESSION['username'])
                         {
-                            while ($row = mysqli_fetch_assoc($result))
+                            $username = $_POST['username'];
+                            $check = "SELECT username, email FROM users";
+                            $res = $conn->query($check);
+                            while ($new = $res->fetch())
                             {
-                                if ($row['email'] == $email)
+                                if ($new['username'] == $username)
                                 {
-                                    $subject = "Camagru password change";
-                                    $body = "http://localhost:8080/camagru/.php";
-                                    $headers = "From: noreply@camagru.com";
-                                    mail ($email, $subject, $body, $headers);
+                                    $qry = "UPDATE users SET password=$hash WHERE username=$username";
+                                    $conn->query($qry);
                                 }
                             }
                         }
                     }
                 }
+                catch(PDOException $e)
+                {
+                    echo "[INFO] " . $e->getMessage();
+                }
             }
+        }
     ?>
 </body>
 </html>
