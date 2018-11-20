@@ -10,7 +10,7 @@
 
 <body>
     <div class="top">
-        <a class="camagru" href="#home">Camagru</a>
+        <a class="camagru" href="home.php">Camagru</a>
         <a class="info" href="index.php" name='logout' >Logout</a>
         <a class="info" href="settings.php">Settings</a>
     </div>
