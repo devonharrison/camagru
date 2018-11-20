@@ -43,7 +43,7 @@
                 {
                     $conn = new PDO($DB_DSN, $dusername, $password);
                     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                    $qry = "SELECT username, password, verified FROM users";
+                    $qry = "SELECT user_id, username, password, verified FROM users";
                     $res = $conn->query($qry);
                     while ($new = $res->fetch())
                     {
@@ -52,6 +52,7 @@
                             $un = $new['username'];
                             $pw = $new['password'];
                             $ver = $new['verified'];
+                            $id = $new['user_id'];
                         }
                     }
                     if ($ver == 'yes')
@@ -62,6 +63,7 @@
                             {
                                 $_SESSION['username'] = $username;
                                 $_SESSION['logged_in'] = "yes";
+                                $_SESSION['id'] = $id;
                                 header('Location: http://localhost:8080/camagru/home.php');
                             }
                             else
