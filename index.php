@@ -11,20 +11,24 @@
 </head>
 
 <body>
-<div class="top">
+
+    <div class="top">
         <a class="camagru" href="#home">Camagru</a>
         <a class="info" href="login.php" name='login' >Login</a>
         <a class="info" href="signup.php" name='signup'>Sign-up</a>
     </div>
 
-    <div class="row">
-        <div class="column"></div>
-        <div class="column"></div>
-        <div class="column"></div>
-        <div class="column"></div>
-        <div class="column"></div>
-        <div class="column"></div>
+    <div class="container">
+        <div class="row">
+            <div class="column"></div>
+            <div class="column"></div>
+            <div class="column"></div>
+            <div class="column"></div>
+            <div class="column"></div>
+            <div class="column"></div>
+        </div>
     </div>
+
     <?php
         $_SESSION['logged_in'] = "no";
     ?>

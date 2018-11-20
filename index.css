@@ -35,32 +35,41 @@ body {
     color: #123c69;
 }
 
+.container {
+    margin: 0 auto;
+    max-width: 100%;
+    padding: 2%;
+}
+
 .row {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
     align-content: space-around;
-    margin: 2% 2%;
 }
 
 .column {
     background-color: #eee2dc;
     border: 1px solid #bab2b5;
-    flex: 30%;
-    max-width: 30%;
-    height: 400px;
+    width: 30%;
+    height: 550px;
+    margin: 1%;
 }
 
-@media (max-width: 800px) {
+@media screen and (max-width: 900px) {
     .column {
-        flex: 60%;
-        max-width: 60%;
+        background-color: #eee2dc;
+        border: 1px solid #bab2b5;
+        width: 45%;
+        height: 450px;
     }
 }
 
-@media (max-width: 600px) {
+@media screen and (max-width: 600px) {
     .column {
-        flex: 100%;
-        max-width: 100%;
+        background-color: #eee2dc;
+        border: 1px solid #bab2b5;
+        width: 90%;
+        height: 350px;
     }
 }

@@ -10,6 +10,7 @@
 
 <body>
     <div class="top">
+        <a class="camagru" href="#home">Camagru</a>
         <div class="menu">
             <img src="images/menu.png" alt="menu" id="icon">
             <div class="content">
@@ -18,17 +19,38 @@
                 <a href="index.php">Logout</a>
             </div>
         </div>
-        <a class="camagru" href="#home">Camagru</a>
     </div>
 
     <div class="container">
     <div class="row">
-        <div class="column"></div>
-        <div class="column"></div>
-        <div class="column"></div>
-        <div class="column"></div>
-        <div class="column"></div>
-        <div class="column"></div>
+        <div class="column">
+        <?php
+        
+        $servername = "localhost";
+        $dusername = "root";
+        $password = "password";
+        $dbname = "camagru";
+            try
+            {
+                $conn = new PDO("mysql:host=$servername;dbname=$dbname", $dusername, $password);
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $str = "SELECT * FROM images";
+                $res = $conn->query($str);
+                while ($new = $res->fetch())
+                {
+                    $fig = "<figure>";
+                    $img = "<img src=\"".$new['image']."\">";
+                    $capt = "<figcaption>".$new['name']."</figcaption>";
+                    $cl = "</figure>";
+                    echo $fig.$img.$capt.$cl;
+                }
+            }
+            catch(PDOException $e)
+            {
+                echo "[INFO] " . $e->getMessage();
+            }
+        ?>
+        </div>
     </div>
 </div>
     <?php

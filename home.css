@@ -14,7 +14,7 @@ body {
 
 .menu {
     position: relative;
-    display: inline;
+    display: inline-block;
 }
 
 .menu:hover .content {
