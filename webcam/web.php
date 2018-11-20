@@ -14,11 +14,11 @@
 </head>
 
 <body>
-  <ul>
-      <li id="left"><a id="camagru" href="../home.php">Camagru</a></li>
-      <li class="right"><a class="info" href="../index.php">Logout</a></li>
-      <li class="right"><a class="info" href="../settings.php">Settings</a></li>
-  </ul>
+    <div class="top">
+        <a class="camagru" href="home.php">Camagru</a>
+        <a class="info" href="profile.php" name='signup'>Profile</a>
+        <a class="info" href="index.php" name='logout'>Logout</a>
+    </div>
 
   <div id="camera">
   <form method="POST">
@@ -67,7 +67,7 @@
     <form action="../fileUpload.php" method="POST" enctype="multipart/form-data">
         <label>Upload a File:</label>
         <input type="file" name="file" id="image">
-        <input type="submit" name="but_upload" value="Save name" >
+        <input type="submit" name="but_upload" value="Save name">
     </form>
     <?php
         echo"<form method='POST' action='".setComments($connect)."'>

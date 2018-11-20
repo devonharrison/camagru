@@ -9,13 +9,12 @@
 </head>
 
 <body>
-    <a href="home.php">Camagru</a>
-    <ul>
-        <li><a href="webcam/web.php">Upload</a></li>
-        <li><a href="profile.php">Profile</a></li>
-        <li><a href="index.php">Logout</a></li>
-    </ul>
-        
+    <div class="top">
+        <a class="camagru" href="home.php">Camagru</a>
+        <a class="info" href="webcam/web.php" name='upload' >Upload</a>
+        <a class="info" href="profile.php" name='signup'>Profile</a>
+        <a class="info" href="index.php" name='logout'>Logout</a>
+    </div>
     <div class="container">
     <div class="row">
         <?php
