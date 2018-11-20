@@ -76,7 +76,8 @@
                     }
                     else
                     {
-                        echo "User " . $username . " not found, please verify your account or signup";
+                        header('refresh:1 ;url=index.php');
+                        echo "User " . $username . " not verified.";
                     }
                 }
                 catch (PDOException $e)
