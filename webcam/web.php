@@ -20,7 +20,7 @@
         <a class="info" href="index.php" name='logout'>Logout</a>
     </div>
 
-  <div id="camera">
+  <div class="camera">
   <form method="POST">
     <video id="video" width="0" height="0" autoplay></video>
     <canvas id="canvas" width="640" height="480"></canvas>

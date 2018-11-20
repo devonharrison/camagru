@@ -26,7 +26,7 @@ body {
 
 .info {
     float: right;
-    display: inline-block;
+    display: block;
     text-align: center;
     text-decoration: none;
     padding-top: 60px;
@@ -35,13 +35,13 @@ body {
     color: #123c69;
 }
 
-#camera {
+.camera {
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-around;
     align-content: space-around;
     width: 700px;
-    margin: 150px auto;
+    margin-top: 150px;
     border: solid 2px black;
 }
 

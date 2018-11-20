@@ -11,9 +11,9 @@
 <body>
     <div class="top">
         <a class="camagru" href="home.php">Camagru</a>
-        <a class="info" href="webcam/web.php" name='upload' >Upload</a>
-        <a class="info" href="profile.php" name='signup'>Profile</a>
         <a class="info" href="index.php" name='logout'>Logout</a>
+        <a class="info" href="profile.php" name='signup'>Profile</a>
+        <a class="info" href="webcam/web.php" name='upload' >Upload</a>
     </div>
     <div class="container">
     <div class="row">
