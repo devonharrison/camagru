@@ -10,25 +10,25 @@
 
 <body>
     <div class="top">
-        <a class="camagru" href="#home">Camagru</a>
-    </div
-        <div class="menu">
-            <button>Menu</button>
-            <div class="content">
-                <a href="webcam/web.php">Upload</a>
-                <a href="profile.php">Profile</a>
-                <a href="index.php">Logout</a>
-            </div>
-        </div>
-
+        <a class="camagru" href="home.php">Camagru</a>
+        <a class="info" href="index.php" name='logout'>Logout</a>
+        <a class="info" href="profile.php" name='signup'>Profile</a>
+        <a class="info" href="webcam/web.php" name='upload' >Upload</a>
+    </div>
     <div class="container">
     <div class="row">
         <?php
-        
-        $servername = "localhost";
-        $dusername = "root";
-        $password = "password";
-        $dbname = "camagru";
+            session_start();
+            $servername = "localhost";
+            $dusername = "root";
+            $password = "password";
+            $dbname = "camagru";
+            if ($_POST['logout'])
+            {
+                $_SESSION['logged_in'] = 'no';
+                //session_unset();
+                //session_destroy();
+            }
             try
             {
                 $conn = new PDO("mysql:host=$servername;dbname=$dbname", $dusername, $password);
@@ -43,6 +43,7 @@
                     $cl = "</figure>";
                     echo $fig.$img.$capt.$cl;
                 }
+
             }
             catch(PDOException $e)
             {
@@ -51,13 +52,5 @@
         ?>
     </div>
 </div>
-    <?php
-    session_start();
-        if ($_POST['logout'])
-        {
-            session_unset();
-            session_destroy();
-        }
-    ?>
 </body>
 </html>

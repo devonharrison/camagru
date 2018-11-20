@@ -1,11 +1,12 @@
 body {
     background-color: #edc7b7;
+    margin: 0;
 }
 h1 {
     color: #ac3b61;
     font-family: cursive;
     font-weight: bolder;
-    font-size: 200%;
+    font-size: 300%;
 }
 div {
     width: 500px;
