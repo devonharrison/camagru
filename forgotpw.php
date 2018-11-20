@@ -10,45 +10,57 @@
     <center><h1>Camagru</h1></center>
     <div>
         <center><h2>Forgot password</h2></center>
-        <form class="form" action="login.php" method="post">
+        <form class="form" action="forgotpw.php" method="post">
             <label>Email:</label><br>
             <input type="text" name="email" class="inputvalues" placeholder="Confirm email address"/><br>
             <button id="login_btn" type="submit" name="send">Send email</button>
         </form>
     </div>
     <?php
+        session_start();
         $servername = "localhost";
         $dusername = "root";
         $password = "password";
         $dbname = "camagru";
-        $conn = mysqli_connect($servername, $dusername, $password, $dbname);
-        if (!$conn)
-        {
-            die("Connection failed: " . mysqli_connect_error()."<br>");
-        }
+        $DB_DSN='mysql:host=localhost;dbname=camagru';
         if (isset($_POST['send']))
         {
-            $qry = "SELECT username, email FROM users";
-            $result = mysqli_query($conn, $qry);
-            if (mysqli_num_rows($result) > 0)
+            if (empty($_POST['email']))
             {
-                while ($row = mysqli_fetch_assoc($result))
+                echo "Please enter email address.";
+            }
+            else
+            {
+                try
                 {
-                    if ($row['email'] == $_POST['email'])
+                    $conn = new PDO($DB_DSN, $dusername, $password);
+                    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                    $qry = "SELECT username, email FROM users";
+                    $res = $conn->query($qry);
+                    while ($new = $res->fetch())
                     {
-                        $email = $_POST['email'];
-                        break ;
+                        if ($new['email'] == $_POST['email'])
+                        {
+                            $email = $new['email'];
+                            $username = $new['username'];
+                        }
                     }
+                    $num = rand(100000, 999999);
+                    $uniquelink = "http://localhost:8080/camagru/changepw.php";
+                    $subject = "Camagru password change";
+                    $body = "Please click the link below and enter the code: " . $num . "\n" . $uniquelink;
+                    $headers = "From: noreply@camagru.com";
+                    $_SESSION['code'] = $num;
+                    $_SESSION['username'] = $username;
+                    mail ($email, $subject, $body, $headers);
+                }
+                catch(PDOException $e)
+                {
+                    echo "Connection failure " . $e->getMessage();
                 }
             }
-            //still not working
-            $hash = password_hash($email, PASSWORD_DEFAULT);
-            $uniquelink = "http://localhost:8080/camagru/changepw.php?action=set&key=".$hash;
-            $subject = "Camagru password change";
-            $body = $uniquelink;
-            $headers = "From: noreply@camagru.com";
-            mail ($email, $subject, $body, $headers);
         }
+        $conn = null;
     ?>
 </body>
 </html>

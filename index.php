@@ -35,15 +35,28 @@
 </head>
 
 <body>
-<div class="top">
+
+    <div class="top">
         <a class="camagru" href="#home">Camagru</a>
         <a class="info" href="login.php" name='login' >Login</a>
         <a class="info" href="signup.php" name='signup'>Sign-up</a>
     </div>
 
     <div class="container">
+<<<<<<< HEAD
             
+=======
+        <div class="row">
+            <div class="column"></div>
+            <div class="column"></div>
+            <div class="column"></div>
+            <div class="column"></div>
+            <div class="column"></div>
+            <div class="column"></div>
+        </div>
+>>>>>>> 2e66e7700cc8205171dd8e1c47a923a7ccdccc2e
     </div>
+
     <?php
         $_SESSION['logged_in'] = "no";
     ?>

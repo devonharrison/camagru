@@ -11,23 +11,48 @@
 <body>
     <div class="top">
         <a class="camagru" href="#home">Camagru</a>
-        <a class="info" href="index.php" name='logout' >Logout</a>
-        <a class="info" href="settings.php">Settings</a>
+        <div class="menu">
+            <img src="images/menu.png" alt="menu" id="icon">
+            <div class="content">
+                <a href="webcam/web.php">Upload</a>
+                <a href="profile.php">Profile</a>
+                <a href="index.php">Logout</a>
+            </div>
+        </div>
     </div>
 
+    <div class="container">
     <div class="row">
-        <div class="column"></div>
-        <div class="column"></div>
-        <div class="column"></div>
-        <div class="column"></div>
-        <div class="column"></div>
-        <div class="column"></div>
+        <div class="column">
+        <?php
+        
+        $servername = "localhost";
+        $dusername = "root";
+        $password = "password";
+        $dbname = "camagru";
+            try
+            {
+                $conn = new PDO("mysql:host=$servername;dbname=$dbname", $dusername, $password);
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $str = "SELECT * FROM images";
+                $res = $conn->query($str);
+                while ($new = $res->fetch())
+                {
+                    $fig = "<figure>";
+                    $img = "<img src=\"".$new['image']."\">";
+                    $capt = "<figcaption>".$new['name']."</figcaption>";
+                    $cl = "</figure>";
+                    echo $fig.$img.$capt.$cl;
+                }
+            }
+            catch(PDOException $e)
+            {
+                echo "[INFO] " . $e->getMessage();
+            }
+        ?>
+        </div>
     </div>
-    
-    <ul id="bottom">
-     <a href="webcam/web.php"><img src="images/upload.png" alt="upload" id="upload"></a>
-     <a href="profile.php"><img src="images/profile.png" alt="profile" id="profile"></a>
-    </ul>
+</div>
     <?php
     session_start();
         if ($_POST['logout'])
