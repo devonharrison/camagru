@@ -41,7 +41,7 @@ body {
     justify-content: space-around;
     align-content: space-around;
     width: 700px;
-    margin-top: 150px;
+    margin: 0 auto;
     border: solid 2px black;
 }
 
