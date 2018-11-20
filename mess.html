@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Cross Burger</title>
+  <style>
+      body {
+  background: blue;
+  color: #cdcdcd;
+  font-family: "Avenir Next", "Avenir", sans-serif;
+}
+.bg-wrapper {
+  display: block;
+  position: relative;
+  top: 50px;
+  left: 50px;
+  z-index: 1;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.bg-wrapper input {
+  display: block;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: -7px;
+  left: -5px;
+  cursor: pointer;
+  z-index: 2;
+  opacity: 0;
+  -webkit-touch-callout: none;
+}
+
+.bg-wrapper span {
+  display: block;
+  width: 40px;
+  height: 5px;
+  z-index: 1;
+  position: relative;
+  background: #fff;
+  margin-bottom: 7px;
+  transform-origin: 4px 0px;
+  transition: transform 0.7s cubic-bezier(0.77,0.2,0.05,1.0), background 0.7s cubic-bezier(0.77,0.2,0.05,1.0), 0.7s ease-in;
+}
+
+.bg-wrapper span:first-child {
+  transform-origin: 0% 0%;
+}
+
+.bg-wrapper span:nth-last-child(2)
+{
+  transform-origin: 0% 100%;
+}
+
+.bg-wrapper input:checked ~ span {
+  opacity: 1;
+  transform: rotate(45deg) translate(-2px, -1px);
+  background: #232323;
+}
+
+.bg-wrapper input:checked ~ span:nth-last-child(3)
+{
+  opacity: 0;
+  transform: rotate(0deg) scale(0.2, 0.2);
+}
+.bg-wrapper input:checked ~ span:nth-last-child(2)
+{
+  opacity: 1;
+  transform: rotate(-45deg) translate(0, -1px);
+}
+
+.bg-mn {
+  position: absolute;
+  width: 200px;
+  margin: -100px 0 0 -60px;
+  padding: 50px;
+  padding-top: 125px;
+  background: #fff;
+  list-style-type: none;
+  transform: translate(-100%, -20%);
+  transform-origin: 0% 0%;
+  transition: transform 0.8s cubic-bezier(0.77,0.2,0.05,1.0);
+}
+.bg-wrapper input:checked ~ ul {
+  transform: scale(1.0, 1.0);
+  opacity: 1;
+}
+.bg-mn li {
+  padding: 10px 0;
+  font-size: 30px;
+}
+  </style>
+</head>
+<body>
+  <div class="bg-wrapper">
+    <input type="checkbox"/>
+    <span></span>
+    <span></span>
+    <span></span>
+    <ul class="bg-mn">
+      <a href="#"><li>blah</li></a>
+      <a href="#"><li>blah</li></a>
+      <a href="#"><li>blah</li></a>
+      <a href="#"><li>blah</li></a>
+      <a href="#"><li>blah</li></a>
+      <a href="#"><li>blah</li></a>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

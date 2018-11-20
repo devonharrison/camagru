@@ -11,15 +11,15 @@
 <body>
     <div class="top">
         <a class="camagru" href="#home">Camagru</a>
+    </div
         <div class="menu">
-            <img src="images/menu.png" alt="menu" id="icon">
+            <button>Menu</button>
             <div class="content">
                 <a href="webcam/web.php">Upload</a>
                 <a href="profile.php">Profile</a>
                 <a href="index.php">Logout</a>
             </div>
         </div>
-    </div>
 
     <div class="container">
     <div class="row">
