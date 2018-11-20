@@ -13,7 +13,6 @@ if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)
    });
 }
 
-
 var image = new Image();
 
 setInterval(() => {
