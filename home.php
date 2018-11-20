@@ -18,7 +18,6 @@
         
     <div class="container">
     <div class="row">
-        <div class="column">
         <?php
         
         $servername = "localhost";
@@ -45,7 +44,6 @@
                 echo "[INFO] " . $e->getMessage();
             }
         ?>
-        </div>
     </div>
 </div>
     <?php
