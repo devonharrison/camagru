@@ -4,8 +4,7 @@
     $dusername = "root";
     $password = "password";
     $dbname = "camagru";
-<<<<<<< HEAD
-
+    $name = "";
     // $folderPath = "../upload/";
   
     // $image_parts = explode(";base64,", $img);
@@ -19,15 +18,11 @@
     // file_put_contents($file, $image_base64);
   
     // print_r($fileName);
-=======
-    $nme = "tumi";
-    
->>>>>>> e154ab29da68b93042588f5318f9d7f9864abd63
     try
     {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $dusername, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $str = "INSERT INTO images (image) VALUES ('$img')";
+        $str = "INSERT INTO images (image, name) VALUES ('$img', '$name')";
         $conn->exec($str);
         echo "image uploaded";
         header('Location: web.php');
