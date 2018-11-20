@@ -1,7 +1,8 @@
 <?php
-   date_default_timezone_set('Africa/CapeTown');
-   include 'dbh.inc.php';
-   include 'comment.inc.php';
+    session_start();
+    date_default_timezone_set('Africa/CapeTown');
+    include 'dbh.inc.php';
+    include 'comment.inc.php';
 ?>
 <!DOCTYPE html>
 <html lang="en-US">
@@ -14,20 +15,52 @@
 
 <body>
   <ul>
-      <li id="left"><a id="camagru" href="#home">Camagru</a></li>
+      <li id="left"><a id="camagru" href="../home.php">Camagru</a></li>
       <li class="right"><a class="info" href="../index.php">Logout</a></li>
       <li class="right"><a class="info" href="../settings.php">Settings</a></li>
   </ul>
 
   <div id="camera">
-  <form method="POST" action="storeimage.php">
+  <form method="POST">
     <video id="video" width="0" height="0" autoplay></video>
     <canvas id="canvas" width="640" height="480"></canvas>
-    <a href="#"><img src="../images/camera_icon.png" alt="capture" id="snap"></a>
+    <a><img src="../images/camera_icon.png" alt="capture" id="snap"></a>
     <input type="hidden" name="image" id="img">
     <canvas id="canvas2" width="640" height="480"></canvas>
     <script src="webcam.js"></script>
-    <button type="Submit" class="btn btn-success">Save</button>
+    <button type="Submit" class="btn btn-success" name="save">Save</button>
+  </form>
+    <?php
+        if (isset($_POST['save']))
+        {
+          if ($_SESSION['logged_in'] == 'no')
+          {
+            echo "Must be logged in to upload image";
+          }
+          else
+          {
+            $img = $_POST['image'];
+            $servername = "localhost";
+            $dusername = "root";
+            $password = "password";
+            $dbname = "camagru";
+            $name = "";
+            try
+            {
+                $conn = new PDO("mysql:host=$servername;dbname=$dbname", $dusername, $password);
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $str = "INSERT INTO images (image, name) VALUES ('$img', '$name')";
+                $conn->exec($str);
+                echo "image uploaded";
+                header('Location: web.php');
+            }
+            catch(PDOException $e)
+            {
+                echo "[INFO] " . $e->getMessage();
+            }
+          }
+        }
+    ?>
   </div>
 
   <div id="upload">
@@ -36,15 +69,16 @@
         <input type="file" name="file" id="image">
         <input type="submit" name="but_upload" value="Save name" >
     </form>
-  </div>
-  <?php
-    echo"<form method='POST' action='".setComments($connect)."'>
-    <input type='hidden' name='uid' value='Anonymous'>
-    <input type='hidden' name='date' value='".date('Y-m-d H:i:s')."'>
-    <textarea name='message'></textarea><br>
-    <button type='submit' name='commentSubmit'>Comment</button>
-    </form>";
-    getComments($connect);
+    <?php
+        echo"<form method='POST' action='".setComments($connect)."'>
+        <input type='hidden' name='uid' value='Anonymous'>
+        <input type='hidden' name='date' value='".date('Y-m-d H:i:s')."'>
+        <textarea name='message'></textarea><br>
+        <button type='submit' name='commentSubmit'>Comment</button>
+        </form>";
+        getComments($connect);
   ?>
+  </div>
+
 </body>
 </html>

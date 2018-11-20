@@ -24,11 +24,17 @@
     <div class="container">
     <div class="row">
         <?php
-        
-        $servername = "localhost";
-        $dusername = "root";
-        $password = "password";
-        $dbname = "camagru";
+            session_start();
+            $servername = "localhost";
+            $dusername = "root";
+            $password = "password";
+            $dbname = "camagru";
+            if ($_POST['logout'])
+            {
+                $_SESSION['logged_in'] = 'no';
+                //session_unset();
+                //session_destroy();
+            }
             try
             {
                 $conn = new PDO("mysql:host=$servername;dbname=$dbname", $dusername, $password);
@@ -43,6 +49,7 @@
                     $cl = "</figure>";
                     echo $fig.$img.$capt.$cl;
                 }
+
             }
             catch(PDOException $e)
             {
@@ -51,13 +58,5 @@
         ?>
     </div>
 </div>
-    <?php
-    session_start();
-        if ($_POST['logout'])
-        {
-            session_unset();
-            session_destroy();
-        }
-    ?>
 </body>
 </html>
