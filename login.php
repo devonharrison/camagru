@@ -22,8 +22,7 @@
             <button type="submit" id="login_btn" name="login">Login</button>
             <a href="forgotpw.php">Forgot your password?</a>
         </form>
-    </div>
-    <?php
+        <?php
         $servername = "localhost";
         $dusername = "root";
         $password = "password";
@@ -78,7 +77,7 @@
                     }
                     else
                     {
-                        header('refresh:1 ;url=index.php');
+                        header('refresh:2 ;url=index.php');
                         echo "User " . $username . " not verified.";
                     }
                 }
@@ -90,5 +89,6 @@
         }
         $conn = null;
     ?>
+    </div>
 </body>
 </html>

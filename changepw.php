@@ -10,8 +10,8 @@
     <center><h1>Camagru</h1></center>
     <div>
         <center><h2>Forgot password</h2></center>
-        <form class="form" action="login.php" method="post">
-            <label>User name:</label><br>
+        <form class="form" method="post">
+            <label>Username:</label><br>
             <input type="text" name="username" class="inputvalues" placeholder="Enter username"/><br>
             <label>Unique code:</label><br>
             <input type="text" name="ucode" class="inputvalues" placeholder="Enter code"/><br>
@@ -21,8 +21,7 @@
             <input type="password" name="cpassword" class="inputvalues" placeholder="Confirm new password"/><br>
             <button type="submit" id="login_btn" name="change">Change password</button>
         </form>
-    </div>
-    <?php
+        <?php
         session_start();
         $servername = "localhost";
         $dusername = "root";
@@ -48,17 +47,28 @@
                         if ($_POST['ucode'] == $_SESSION['code'] && $_POST['username'] == $_SESSION['username'])
                         {
                             $username = $_POST['username'];
-                            $check = "SELECT username, email FROM users";
+                            $check = "SELECT username, user_id, email FROM users";
                             $res = $conn->query($check);
                             while ($new = $res->fetch())
                             {
                                 if ($new['username'] == $username)
                                 {
-                                    $qry = "UPDATE users SET password=$hash WHERE username=$username";
-                                    $conn->query($qry);
+                                    $id = $new['user_id'];
                                 }
                             }
+                            $qry = "UPDATE users SET password='$hash' WHERE user_id='$id'";
+                            $conn->query($qry);
+                            header('refresh:2 ; url=login.php');
+                            echo "Password changed successfully<br>";
                         }
+                        else
+                        {
+                            echo "Incorrect code or username<br>";
+                        }
+                    }
+                    else
+                    {
+                        echo "Passwords do not match<br>";
                     }
                 }
                 catch(PDOException $e)
@@ -68,5 +78,6 @@
             }
         }
     ?>
+    </div>
 </body>
 </html>

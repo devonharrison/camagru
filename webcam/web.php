@@ -15,9 +15,9 @@
 
 <body>
     <div class="top">
-        <a class="camagru" href="home.php">Camagru</a>
-        <a class="info" href="index.php" name='logout'>Logout</a>
-        <a class="info" href="profile.php" name='profile'>Profile</a>
+        <a class="camagru" href="../home.php">Camagru</a>
+        <a class="info" href="../index.php" name='logout'>Logout</a>
+        <a class="info" href="../profile.php" name='profile'>Profile</a>
     </div>
 
   <div class="camera">

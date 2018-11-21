@@ -15,8 +15,7 @@
             <input type="text" name="email" class="inputvalues" placeholder="Confirm email address"/><br>
             <button id="login_btn" type="submit" name="send">Send email</button>
         </form>
-    </div>
-    <?php
+        <?php
         session_start();
         $servername = "localhost";
         $dusername = "root";
@@ -27,7 +26,7 @@
         {
             if (empty($_POST['email']))
             {
-                echo "Please enter email address.";
+                echo "Please enter email address";
             }
             else
             {
@@ -45,14 +44,22 @@
                             $username = $new['username'];
                         }
                     }
-                    $num = rand(100000, 999999);
-                    $uniquelink = "http://localhost:8080/camagru/changepw.php";
-                    $subject = "Camagru password change";
-                    $body = "Please click the link below and enter the code: " . $num . "\n" . $uniquelink;
-                    $headers = "From: noreply@camagru.com";
-                    $_SESSION['code'] = $num;
-                    $_SESSION['username'] = $username;
-                    mail ($email, $subject, $body, $headers);
+                    if ($email == null)
+                    {
+                        echo "Please use the email address used when you registered";
+                    }
+                    else
+                    {
+                        $num = rand(100000, 999999);
+                        $uniquelink = "http://localhost:8080/camagru/changepw.php";
+                        $subject = "Camagru password change";
+                        $body = "Please click the link below and enter the code: " . $num . "\n" . $uniquelink;
+                        $headers = "From: noreply@camagru.com";
+                        $_SESSION['code'] = $num;
+                        $_SESSION['username'] = $username;
+                        mail ($email, $subject, $body, $headers);
+                        echo "Password change email sent to " . $email . "<br>";
+                    }
                 }
                 catch(PDOException $e)
                 {
@@ -62,5 +69,6 @@
         }
         $conn = null;
     ?>
+    </div>
 </body>
 </html>
