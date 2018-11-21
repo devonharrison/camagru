@@ -2,7 +2,14 @@
     // include("./config/database.php");
     $currentDir = getcwd();
     $uploads = "upload/";
-    $connect = mysqli_connect("localhost", "root", "password", "camagru");
+    $img = $_POST['image'];
+    $servername = "localhost";
+    $dusername = "root";
+    $password = "password";
+    $dbname = "camagru";
+    $name = "";
+    $query = mysqli_query($servername, $dursename, $password, $dbname);
+    $fileTmpName = $_FILES['file']['tmp_name'];
 
     if(isset($_POST['but_upload'])){
  
@@ -20,9 +27,12 @@
         if( in_array($imageFileType,$extensions_arr) ){
         
          // Insert record
-         $query = "insert into images(name) values('".$name."')";
-         mysqli_query($con,$query);
-         
+         $image_base64 = base64_encode(file_get_contents($fileTmpName));
+         $image = 'data:image/' .$imageFileType. ';base64,' .$image_base64;
+         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $dusername, $password);
+         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+         $str = "INSERT INTO images (image, name) VALUES ('$image', '$name')";
+         $conn->exec($str);
          // Upload file
          move_uploaded_file($_FILES['file']['tmp_name'],$target_dir.$name);
        

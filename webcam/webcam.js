@@ -14,18 +14,16 @@ if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)
 }
 
 var image = new Image();
-
+image.src = '../stickers/wall.png';
 setInterval(() => {
 	context.drawImage(video, 0, 0, 640, 480);
     context.drawImage(image,0,0,640,480);
-    image_format: 'jpeg';
-    jpeg_quality: 90
 }, 16);
 
 // Trigger photo take
 document.getElementById("snap").addEventListener("click", function() {
 	context2.drawImage(video, 0, 0, 640, 480);
-    // context2.drawImage(image,0,0,640,480);
+     context2.drawImage(image,0,0,640,480);
     document.getElementById("img").value = canvas2.toDataURL();
 });
 

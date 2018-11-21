@@ -44,6 +44,7 @@ try
     /*Comments table */
     $comments = "CREATE TABLE IF NOT EXISTS comments (
         id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        image_id int(11) NOT NULL,
         uid VARCHAR(128) NOT NULL,
         date VARCHAR(128) NOT NULL,
         message TEXT NOT NULL)";

@@ -69,15 +69,7 @@
         <input type="file" name="file" id="image">
         <input type="submit" name="but_upload" value="Save name">
     </form>
-    <?php
-        echo"<form method='POST' action='".setComments($connect)."'>
-        <input type='hidden' name='uid' value='Anonymous'>
-        <input type='hidden' name='date' value='".date('Y-m-d H:i:s')."'>
-        <textarea name='message'></textarea><br>
-        <button type='submit' name='commentSubmit'>Comment</button>
-        </form>";
-        getComments($connect);
-  ?>
+
   </div>
 
 </body>
