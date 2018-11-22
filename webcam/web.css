@@ -70,4 +70,25 @@ body {
     margin: auto;
     border: solid 2px black;
 }
+.filter{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
 
+.stickers{
+    height: 100px;    
+}
+
+.camera-station{
+    display: relative;
+}
+
+#video{
+    z-index: -10;
+}
+
+#stickers{
+    height: 2000px;
+    z-index: 1020;
+}
