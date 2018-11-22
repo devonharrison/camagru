@@ -14,10 +14,12 @@
 </head>
 
 <body>
-    <div class="top">
-        <a class="camagru" href="../home.php">Camagru</a>
-        <a class="info" href="../index.php" name='logout'>Logout</a>
-        <a class="info" href="../profile.php" name='profile'>Profile</a>
+    <div class="header">
+        <a class="camagru" href="home.php">Camagru</a>
+        <div class="header-right">
+          <a class="info" href="index.php" name='logout'>Logout</a>
+          <a class="info" href="profile.php" name='profile'>Profile</a>
+        </div>
     </div>
 
   <div class="camera">
