@@ -20,37 +20,34 @@
         </div>
     </div>
 
-    <div class="container">
-        <div class="row">
-                <?php
-                    session_start();
-                    $_SESSION['logged_in'] = "no";
-                    $servername = "localhost";
-                    $dusername = "root";
-                    $password = "password";
-                    $dbname = "camagru";
-                    try
-                    {
-                        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $dusername, $password);
-                        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                        $str = "SELECT * FROM images";
-                        $res = $conn->query($str);
-                        while ($new = $res->fetch())
-                        {
-                            $fig = "<figure>";
-                            $img = "<img src=\"".$new['image']."\">";
-                            $capt = "<figcaption>".$new['name']."</figcaption>";
-                            $cl = "</figure>";
-                            echo $fig.$img.$capt.$cl;
-                        }
-                    }
-                    catch(PDOException $e)
-                    {
-                        echo "[INFO] " . $e->getMessage();
-                    }
-                ?>
-        </div>
-    </div>
+
+    <?php
+        session_start();
+        $_SESSION['logged_in'] = "no";
+        $servername = "localhost";
+        $dusername = "root";
+        $password = "password";
+        $dbname = "camagru";
+        try
+        {
+            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $dusername, $password);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $str = "SELECT * FROM images";
+            $res = $conn->query($str);
+            while ($new = $res->fetch())
+            {
+                $fig = "<figure>";
+                $img = "<img src=\"".$new['image']."\">";
+                $capt = "<figcaption>".$new['name']."</figcaption>";
+                $cl = "</figure>";
+                echo $fig.$img.$capt.$cl;
+            }
+        }
+        catch(PDOException $e)
+        {
+            echo "[INFO] " . $e->getMessage();
+        }
+    ?>
 
 </body>
 </html>
