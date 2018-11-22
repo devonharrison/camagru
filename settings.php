@@ -1,6 +1,3 @@
-<?php
-    session_start();
-?>
 <!DOCTYPE html>
 <html lang="en-US">
     <head>
@@ -25,8 +22,8 @@
             <input type="password" name="cpassword" class="inputvalues" placeholder="Confirm new password"/><br>
             <button type="submit" id="login_btn" name="update">Update</button>
         </form>
-    </div>
-    <?php
+        <?php
+        session_start();
         function updateInfo($valueName, $value, $id)
         {
             $servername = "localhost";
@@ -45,12 +42,12 @@
                     $u = 0;
                     while ($new = $res->fetch())
                     {
-                        if ($new['username'] == $username)
+                        if ($value == $new['username'])
                         {
                             echo "Username " . $username . " already taken<br>";
                             $u = 1;
                         }
-                        if ($new['email'] == $email)
+                        if ($value == $new['email'])
                         {
                             echo "Email address " . $email . " already used<br>";
                             $u = 1;
@@ -60,7 +57,7 @@
                     {
                         if ($valueName == 'username')
                         {
-                            $add = "UPDATE users SET username=$value WHERE user_id=$id";
+                            $add = "UPDATE users SET username='$value' WHERE user_id='$id'";
                             if ($conn->query($add))
                             {
                                 echo "Username updated successfully<br>";
@@ -68,7 +65,7 @@
                         }
                         if ($valueName == 'email')
                         {
-                            $add = "UPDATE users SET email=$value WHERE user_id=$id";
+                            $add = "UPDATE users SET email='$value' WHERE user_id='$id'";
                             if ($conn->query($add))
                             {
                                 echo "Email updated successfully<br>";
@@ -87,7 +84,7 @@
                 {
                     $conn = new PDO($DB_DSN, $dusername, $password);
                     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                    $add = "UPDATE users SET password=$value WHERE user_id=$id";
+                    $add = "UPDATE users SET password='$value' WHERE user_id='$id'";
                     if ($conn->query($add))
                     {
                         echo "Password updated successfully<br>";
@@ -105,12 +102,12 @@
             if (!empty($_POST['username']))
             {
                 $value = $_POST['username'];
-                updateInfo('username', $username, $id);
+                updateInfo('username', $value, $id);
             }
             if (!empty($_POST['email']))
             {
                 $value = $_POST['email'];
-                updateInfo('email', $email, $id);
+                updateInfo('email', $value, $id);
             }
             if (!empty($_POST['password']))
             {
@@ -120,20 +117,30 @@
                 }
                 else
                 {
-                    $hash = password_hash($_POST['password']);
-                    if (password_verify($_POST['cpassword'], $hash) == TRUE)
+                    $pass = $_POST['password'];
+                    $pw = $_POST['cpassword'];
+                    $hash = password_hash($pass, PASSWORD_DEFAULT);
+                    if (ctype_lower($pw) == TRUE)
                     {
-                        $value = $hash;
-                        updateInfo('password', $value, $id);
+                        echo "Password is too weak, add some symbols, numbers, you know? Stuff like that";
                     }
                     else
                     {
-                        echo "Passwords do not match";
+                        if (password_verify($pw, $hash) == TRUE)
+                        {
+                            $value = $hash;
+                            updateInfo('password', $value, $id);
+                        }
+                        else
+                        {
+                            echo "Passwords do not match";
+                        }
                     }
                 }
             }
         }
         $conn = null;
     ?>
+    </div>
 </body>
 </html>

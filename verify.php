@@ -32,7 +32,7 @@
                 $_SESSION['verified'] = "no";
             }
             $_SESSION['logged_in'] = "yes";
-            header('refresh:1; url="login.php"');
+            header('refresh:2; url="login.php"');
             echo "User ". $_SESSION['username'] . " successfully registered <br>";
         }
         catch (PDOException $e)
