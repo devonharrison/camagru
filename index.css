@@ -37,24 +37,64 @@ body {
 }
 
 .container {
-    margin: 0 auto;
-    max-width: 100%;
-    padding: 2%;
+    position: relative;
+    margin: 40px 0;
 }
 
-.row {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-    align-content: space-around;
+.img-con {
+    width: 31.33%;
+    padding: 1%;
+    float: left;
+    left: 0;
 }
 
-.column {
-    background-color: #eee2dc;
-    border: 1px solid #bab2b5;
-    width: 30%;
-    height: 450px;
-    margin: 1%;
+.img {
+    height: 0;
+    padding: 0;
+    padding-bottom: 100%;
+    overflow: hidden;
+}
+
+.img img {
+    width: 195%;
+    height: auto;
+    transform:translate(-25%,-7%);
+    -moz-transform:translate(-25%,-7%);
+    -webkit-transform:translate(-25%,-7%);
+    -ms-transform:translate(-25%,-7%);
+}
+
+.clearfix {
+    clear: both;
+}
+
+#pagination {
+    position: relative;
+    margin: 40px 0;
+}
+
+.display-none {
+    display: none;
+}
+
+#pageNav {
+    position: relative;
+    margin: 30px 0;
+}
+
+#pageNav button {
+    background: #eee2dc;
+    color: #bab2b5;
+    padding: 8px 12px;
+    margin: 5px 5px 5px 0;
+    border: 0;
+    font-size: 10px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.active {
+    text-decoration: underline!important;
 }
 
 @media only screen and (max-width: 900px) {
@@ -76,22 +116,15 @@ body {
     .header-right {
         float: none;
     }
-}
-
-@media screen and (max-width: 900px) {
-    .column {
-        background-color: #eee2dc;
-        border: 1px solid #bab2b5;
-        width: 45%;
-        height: 450px;
+    .img-con {
+        width: 90%;
+        padding: 2% 1%;
     }
 }
 
-@media screen and (max-width: 600px) {
-    .column {
-        background-color: #eee2dc;
-        border: 1px solid #bab2b5;
-        width: 90%;
-        height: 350px;
+@media screen and (min-width: 900px) and (max-width: 2000px) {
+    .img-con {
+        width: 45%;
+        padding: 1%;
     }
 }

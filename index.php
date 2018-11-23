@@ -19,7 +19,6 @@
             <a class="info" href="signup.php" name='signup'>Sign-up</a>
         </div>
     </div>
-
     <div class="container">
         <div class="row">
                 <?php

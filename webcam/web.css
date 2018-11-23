@@ -90,7 +90,6 @@ body {
     z-index: -10;
 }
 
-<<<<<<< HEAD
 @media only screen and (max-width: 900px) {
     .header a {
         float: none;
@@ -110,9 +109,8 @@ body {
     .header-right {
         float: none;
     }
-=======
-#stickers{
+
+#stickers {
     height: 2000px;
     z-index: 1020;
->>>>>>> 5bef71df394e27622d5003e4b953de107917a308
 }
