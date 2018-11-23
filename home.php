@@ -33,8 +33,7 @@
                 if ($_POST['logout'])
                 {
                     $_SESSION['logged_in'] = 'no';
-                    //session_unset();
-                    //session_destroy();
+                    session_destroy();
                 }
                 try
                 {

@@ -1,7 +1,6 @@
 <?php
     session_start();
     date_default_timezone_set('Africa/CapeTown');
-    include 'dbh.inc.php';
     include 'comment.inc.php';
 ?>
 <!DOCTYPE html>
@@ -15,10 +14,10 @@
 
 <body>
     <div class="header">
-        <a class="camagru" href="home.php">Camagru</a>
+        <a class="camagru" href="../home.php">Camagru</a>
         <div class="header-right">
-          <a class="info" href="index.php" name='logout'>Logout</a>
-          <a class="info" href="profile.php" name='profile'>Profile</a>
+          <a class="info" href="../index.php" name='logout'>Logout</a>
+          <a class="info" href="../profile.php" name='profile'>Profile</a>
         </div>
     </div>
 
@@ -57,8 +56,7 @@
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 $str = "INSERT INTO images (image, name) VALUES ('$img', '$name')";
                 $conn->exec($str);
-                echo "image uploaded";
-                header('Location: web.php');
+                header('Refresh:2 ; url="../home.php"');
             }
             catch(PDOException $e)
             {
