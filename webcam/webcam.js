@@ -38,4 +38,3 @@ document.getElementById("snap").addEventListener("click", function() {
      context2.drawImage(image,0,0,640,480);
     document.getElementById("img").value = canvas2.toDataURL();
 });
-

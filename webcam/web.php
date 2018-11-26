@@ -1,7 +1,6 @@
 <?php
     session_start();
     date_default_timezone_set('Africa/CapeTown');
-    include 'dbh.inc.php';
     include 'comment.inc.php';
 ?>
 <!DOCTYPE html>
@@ -14,10 +13,12 @@
 </head>
 
 <body>
-    <div class="top">
+    <div class="header">
         <a class="camagru" href="../home.php">Camagru</a>
-        <a class="info" href="../index.php" name='logout'>Logout</a>
-        <a class="info" href="../profile.php" name='profile'>Profile</a>
+        <div class="header-right">
+          <a class="info" href="../index.php" name='logout'>Logout</a>
+          <a class="info" href="../profile.php" name='profile'>Profile</a>
+        </div>
     </div>
 
   <div class="camera">
@@ -32,14 +33,12 @@
     
     <button type="Submit" class="btn btn-success" name="save">Save</button>
   </form>
- 
-  
     <?php
         if (isset($_POST['save']))
         {
           if ($_SESSION['logged_in'] == 'no')
           {
-            echo "Must be logged in to upload image";
+            header('Location: ../login.php');
           }
           else
           {
@@ -48,15 +47,14 @@
             $dusername = "root";
             $password = "password";
             $dbname = "camagru";
-            $name = "";
+            $name = $_SESSION['username'];
             try
             {
                 $conn = new PDO("mysql:host=$servername;dbname=$dbname", $dusername, $password);
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 $str = "INSERT INTO images (image, name) VALUES ('$img', '$name')";
                 $conn->exec($str);
-                echo "image uploaded";
-                header('Location: web.php');
+                header('Refresh:2 ; url="../home.php"');
             }
             catch(PDOException $e)
             {
@@ -77,12 +75,49 @@
   </div>
 
    <div class="filter">
-    <img class="stickers" src="../stickers/kakashi.png" alt="kakashi.png">
-    <img class="stickers" src="../stickers/titan.png" alt="titan.png">
-    <img class="stickers" src="../stickers/vegeta.png" alt="vegeta.png">
-    <img class="stickers" src="../stickers/wall.png" alt="wall.png">
-    <img class="stickers" src="../stickers/kagura.png" alt="kagura.png">
+    <img class="stickers" name="kakashi" src="../stickers/kakashi.png" alt="kakashi.png">
+    <img class="stickers" name="titan" src="../stickers/titan.png" alt="titan.png">
+    <img class="stickers" name="vegeta" src="../stickers/vegeta.png" alt="vegeta.png">
+    <img class="stickers" name="wall" src="../stickers/wall.png" alt="wall.png">
+    <img class="stickers" name="kagura" src="../stickers/kagura.png" alt="kagura.png">
   </div>
-  <script src="webcam.js"></script>
+  <script>
+    var video = document.getElementById('video');
+    var canvas = document.getElementById('canvas');
+    var context = canvas.getContext('2d');
+    var canvas2 = document.getElementById('canvas2');
+    var context2 = canvas2.getContext('2d');
+    var stickers = document.querySelectorAll( '.stickers' );
+
+    //go thru every sticker and assign event listener
+    console.log(stickers[1]);
+    stickers.forEach( function( item ){
+        item.onclick = function(){
+            console.log( item );
+        }
+    })
+
+    // Get access to the camera!
+    if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)
+    {
+      navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream)
+      {
+          video.srcObject = stream;
+      });
+    }
+    var image = new Image();
+    image.src = '../stickers/titan.png';
+    setInterval(() => {
+	    context.drawImage(video, 0, 0, 640, 480);
+        context.drawImage(image,0,0,640,480);
+    }, 16);
+
+    // Trigger photo take
+    document.getElementById("snap").addEventListener("click", function() {
+	    context2.drawImage(video, 0, 0, 640, 480);
+        context2.drawImage(image,0,0,640,480);
+        document.getElementById("img").value = canvas2.toDataURL();
+    });
+  </script>
 </body>
 </html>
