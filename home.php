@@ -21,41 +21,41 @@
         </div>
     </div>
 
-    <div class="container">
-        <div class="row">
-            <?php
-                session_start();
-                $servername = "localhost";
-                $dusername = "root";
-                $password = "password";
-                $dbname = "camagru";
-                if ($_POST['logout'])
-                {
-                    $_SESSION['logged_in'] = 'no';
-                    session_destroy();
-                }
-                try
-                {
-                    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $dusername, $password);
-                    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                    $str = "SELECT * FROM images";
-                    $res = $conn->query($str);
-                    while ($new = $res->fetch())
-                    {
-                        $fig = "<figure>";
-                        $img = "<img src=\"".$new['image']."\">";
-                        $capt = "<figcaption>"."</figcaption>";
-                        $cl = "</figure>";
-                        echo $fig.$img.$capt.$cl;
-                    }
-                }
-                catch(PDOException $e)
-                {
-                    echo "[INFO] " . $e->getMessage();
-                }
-            ?>
-        </div>
-    </div>
+    <?php
+        session_start();
+        $servername = "localhost";
+        $dusername = "root";
+        $password = "password";
+        $dbname = "camagru";
+        if ($_POST['logout'])
+        {
+            $_SESSION['logged_in'] = 'no';
+            session_destroy();
+        }
+        try
+        {
+            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $dusername, $password);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $str = "SELECT * FROM images";
+            $res = $conn->query($str);
+            echo '<div class="container">';
+            while ($new = $res->fetch())
+            {
+                $img = "<img src=\"".$new['image']."\">";
+                echo '<div class="img-con">';
+                echo '<div class="img">';
+                echo $img;
+                echo '</div>';
+                echo '</div>';
+            }
+            echo '</div>';
+            echo '<div class="clearfix"></div>';
+        }
+        catch(PDOException $e)
+        {
+            echo "[INFO] " . $e->getMessage();
+        }
+        ?>
 
 </body>
 </html>
