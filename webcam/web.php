@@ -28,8 +28,8 @@
     <input type="hidden" name="image" id="img">
     <canvas id="canvas2" width="640" height="480"></canvas>
     <a><img src="../images/camera_icon.png" alt="capture" id="snap"></a>
-    <button type="Submit" class="btn btn-success" name="save">Save</button>
-    <button type="Submit" class="btn btn-success" name="delete">Delete</button>
+    <button type="Submit" class="btn" name="save">Save</button>
+    <button type="Submit" class="btn" name="delete">Delete</button>
   </form>
     <?php
         if (isset($_POST['delete']))
@@ -69,7 +69,7 @@
 
   <div id="upload">
     <form action="../fileUpload.php" method="POST" enctype="multipart/form-data">
-        <label>Upload a File:</label>
+        <label>Upload a file:</label>
         <input type="file" name="file" id="image">
         <input type="submit" name="but_upload" value="Save name">
     </form>
