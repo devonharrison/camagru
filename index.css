@@ -39,34 +39,24 @@ body {
 .container {
     position: absolute;
     margin: 0 auto;
+    padding: 1%;
     display: flex;
     justify-content: center;
     align-content: center;
     flex-flow: row wrap;
-    border: 2px solid red;
 }
 
 .img-con {
-    width: 31.33%;
+    width: 28%;
     padding: 2%;
     float: left;
-    border: 1px solid black;
     left: 0;
 }
 
-.img {
-    height: 0;
-    padding: 0;
-    padding-bottom: 100%;
-    overflow: hidden;
-    border: 2px solid green;
-}
-
-.img img {
-    transform:translate(-25%,-7%);
-    -moz-transform:translate(-25%,-7%);
-    -webkit-transform:translate(-25%,-7%);
-    -ms-transform:translate(-25%,-7%);
+.img-con img {
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
 }
 
 .clearfix {
