@@ -44,7 +44,7 @@
                              $img = "<img src=\"".$new['image']."\">";
                              $capt = "<figcaption>"."</figcaption>";
                              $cl = "</figure>";
-                             echo $fig.$img.$capt.$cl;
+                             echo $fig.$img.$capt.$cl.'<button type="Submit" class="btn btn-success" name="delete">Delete</button>';
                         }
                     }
                  }
