@@ -12,13 +12,10 @@
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $str = "INSERT INTO images (image, name) VALUES ('$img', '$name')";
         $conn->exec($str);
-        echo "image uploaded";
         header('Location: web.php');
     }
     catch(PDOException $e)
     {
         echo "[INFO] " . $e->getMessage();
     }
-
-  
 ?>

@@ -23,17 +23,19 @@
 
   <div class="camera">
   <form method="POST">
-    <video id="video" width="0" height="0" autoplay></video>
-    <canvas id="canvas" width="640" height="480">
-    </canvas>
-    <a><img src="../images/camera_icon.png" alt="capture" id="snap"></a>
+    <video id="video" width="640" height="480" autoplay="true"></video>
+    <canvas id="canvas" width="640" height="480"></canvas>
     <input type="hidden" name="image" id="img">
     <canvas id="canvas2" width="640" height="480"></canvas>
-    
-    
+    <a><img src="../images/camera_icon.png" alt="capture" id="snap"></a>
     <button type="Submit" class="btn btn-success" name="save">Save</button>
+    <button type="Submit" class="btn btn-success" name="delete">Delete</button>
   </form>
     <?php
+        if (isset($_POST['delete']))
+        {
+          header('Location: web.php');
+        }
         if (isset($_POST['save']))
         {
           if ($_SESSION['logged_in'] == 'no')
@@ -75,11 +77,11 @@
   </div>
 
    <div class="filter">
-    <img class="stickers" name="kakashi" src="../stickers/kakashi.png" alt="kakashi.png">
-    <img class="stickers" name="titan" src="../stickers/titan.png" alt="titan.png">
-    <img class="stickers" name="vegeta" src="../stickers/vegeta.png" alt="vegeta.png">
-    <img class="stickers" name="wall" src="../stickers/wall.png" alt="wall.png">
-    <img class="stickers" name="kagura" src="../stickers/kagura.png" alt="kagura.png">
+    <button onclick="add_filters(0);"><img class="stickers" name="kakashi" src="../stickers/kakashi.png" alt="kakashi.png"></button>
+    <button onclick="add_filters(1);"><img class="stickers" name="titan" src="../stickers/titan.png" alt="titan.png"></button>
+    <button onclick="add_filters(2);"><img class="stickers" name="vegeta" src="../stickers/vegeta.png" alt="vegeta.png"></button>
+    <button onclick="add_filters(3);"><img class="stickers" name="wall" src="../stickers/wall.png" alt="wall.png"></button>
+    <button onclick="add_filters(4);"><img class="stickers" name="kagura" src="../stickers/kagura.png" alt="kagura.png"></button>
   </div>
   <script>
     var video = document.getElementById('video');
@@ -105,17 +107,25 @@
           video.srcObject = stream;
       });
     }
-    var image = new Image();
-    image.src = '../stickers/titan.png';
-    setInterval(() => {
-	    context.drawImage(video, 0, 0, 640, 480);
+
+    var filters = new Array;
+    filters[0] = "../stickers/kakashi.png";
+    filters[1] = "../stickers/titan.png";
+    filters[2] = "../stickers/vegeta.png";
+    filters[3] = "../stickers/wall.png";
+    filters[4] = "../stickers/kagura.png";
+
+    function  add_filters(e)
+    {
+        var image = new Image();
+        image.src = filters[e];
         context.drawImage(image,0,0,640,480);
-    }, 16);
+    }
 
     // Trigger photo take
     document.getElementById("snap").addEventListener("click", function() {
-	    context2.drawImage(video, 0, 0, 640, 480);
-        context2.drawImage(image,0,0,640,480);
+      context2.drawImage(video, 0, 0, 640, 480);
+        context2.drawImage(canvas, 0, 0, 640, 480);
         document.getElementById("img").value = canvas2.toDataURL();
     });
   </script>
