@@ -1,11 +1,11 @@
 <?php
+    session_start();
     $img = $_POST['image'];
     $servername = "localhost";
     $dusername = "root";
     $password = "password";
     $dbname = "camagru";
     $name = "";
-    
     try
     {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $dusername, $password);
