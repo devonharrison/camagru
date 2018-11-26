@@ -21,9 +21,40 @@
             <label>Confirm New Password:</label><br>
             <input type="password" name="cpassword" class="inputvalues" placeholder="Confirm new password"/><br>
             <button type="submit" id="login_btn" name="update">Update</button>
+            <button type="submit" id="login_btn" name="delete">Delete account</button>
         </form>
         <?php
         session_start();
+        if (isset($_POST['delete']))
+        {
+            $servername = "localhost";
+            $dusername = "root";
+            $password = "password";
+            $dbname = "camagru";
+            $DB_DSN='mysql:host=localhost;dbname=camagru';
+            try
+            {
+                $conn = new PDO($DB_DSN, $dusername, $password);
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $str = "SELECT * FROM users";
+                $res = $conn->query($str);
+                while ($new = $res->fetch())
+                {
+                    if ($_SESSION['username'] == $new['username'])
+                    {
+                        $id = $new['user_id'];
+                    }
+                }
+                $del = "DELETE FROM users WHERE user_id=$id";
+                $conn->exec($del);
+                header('Refresh:2 ; url=index.php');
+                echo "ACCOUNT DELETED SUCCESSFULLY";
+            }
+            catch(PDOException $e)
+            {
+                echo "[INFO] " . $e->getMessage() . "<br>";
+            }
+        }
         function updateInfo($valueName, $value, $id)
         {
             $servername = "localhost";
