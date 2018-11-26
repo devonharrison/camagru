@@ -44,11 +44,10 @@
                     {
                         $fig = "<figure>";
                         $img = "<img src=\"".$new['image']."\">";
-                        $capt = "<figcaption>".$new['name']."</figcaption>";
+                        $capt = "<figcaption>"."</figcaption>";
                         $cl = "</figure>";
                         echo $fig.$img.$capt.$cl;
                     }
-
                 }
                 catch(PDOException $e)
                 {
