@@ -38,9 +38,7 @@
             {
                 $img = "<img src=\"".$new['image']."\">";
                 echo '<div class="img-con">';
-                echo '<div class="img">';
                 echo $img;
-                echo '</div>';
                 echo '</div>';
             }
             echo '</div>';

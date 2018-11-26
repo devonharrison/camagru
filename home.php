@@ -41,11 +41,9 @@
             echo '<div class="container">';
             while ($new = $res->fetch())
             {
-                $img = "<img src=\"".$new['image']."\">";
+                $img = "<a href='picture.php'><img src=\"".$new['image']."\"></a>";
                 echo '<div class="img-con">';
-                echo '<div class="img">';
                 echo $img;
-                echo '</div>';
                 echo '</div>';
             }
             echo '</div>';
