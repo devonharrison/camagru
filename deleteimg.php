@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en-US">
-
 <head>
     <title>Camagru</title>
     <link rel="stylesheet" href="index.css">
@@ -46,6 +45,7 @@
                         $del = "DELETE FROM images WHERE id=$id";
                         $conn->exec($del);
                         header('Refresh:1 ; url=profile.php');
+                        echo "IMAGE DELETED";
                     }
                     catch(PDOException $e)
                     {
