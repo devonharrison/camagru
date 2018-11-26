@@ -40,11 +40,12 @@
                      {
                          if ($new['name'] == $_SESSION['username'])
                          {
+                             $link = 'deleteimg.php?img='.$new["id"];
                              $fig = "<figure>";
-                             $img = "<img src=\"".$new['image']."\">";
+                             $img = "<a href=$link><img src=\"".$new['image']."\"></a>";
                              $capt = "<figcaption>"."</figcaption>";
                              $cl = "</figure>";
-                             echo $fig.$img.$capt.$cl.'<button type="Submit" class="btn btn-success" name="delete">Delete</button>';
+                             echo $fig.$img.$capt.$cl;
                         }
                     }
                  }

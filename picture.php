@@ -21,7 +21,16 @@
         <div class="row">
             <div class="column">
             <?php
-            
+                $id = $_GET['img'];
+                try
+                {
+                    $conn = new PDO($DB_DSN, $dusername, $password);
+                    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                }
+                catch(PDOException $e)
+                {
+                    echo "[INFO] " . $e->getMessage();
+                }
             ?>
             </div>
         </div>
