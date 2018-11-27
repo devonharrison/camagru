@@ -32,7 +32,7 @@ try
     $users = "CREATE TABLE IF NOT EXISTS users(
         user_id INT(100) UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL, 
         name TEXT NOT NULL, surname TEXT NOT NULL, username TEXT NOT NULL,
-        email TEXT NOT NULL, password TEXT NOT NULL, verified TEXT NOT NULL)";
+        email TEXT NOT NULL, password TEXT NOT NULL, verified TEXT NOT NULL, notify TEXT NOT NULL)";
     $conn->exec($users);
     /* Image table */
     $images = "CREATE TABLE IF NOT EXISTS images (  

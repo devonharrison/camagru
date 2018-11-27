@@ -89,8 +89,8 @@
                                 $_SESSION['username'] = $username;
                                 $_SESSION['password'] = $hash;
                                 $_SESSION['email'] = $email;
-                                $add = "INSERT INTO users (name, surname, username, email, password, verified) VALUES('$firstname',
-                                '$surname', '$username', '$email', '$hash', 'no')";
+                                $add = "INSERT INTO users (name, surname, username, email, password, verified, notify) VALUES('$firstname',
+                                '$surname', '$username', '$email', '$hash', 'no', 'yes')";
                                 $res = $conn->query($add);
                                 $hash = password_hash($username, PASSWORD_DEFAULT);
                                 /* sends confirmation email with link to login page */
