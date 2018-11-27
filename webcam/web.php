@@ -54,7 +54,7 @@
             {
                 $conn = new PDO("mysql:host=$servername;dbname=$dbname", $dusername, $password);
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $str = "INSERT INTO images (image, name) VALUES ('$img', '$name')";
+                $str = "INSERT INTO images (image, name, likes) VALUES ('$img', '$name', 0)";
                 $conn->exec($str);
                 header('Refresh:2 ; url="../home.php"');
             }
