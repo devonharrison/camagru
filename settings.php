@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <center><h1>Camagru</h1></center>
+    <center><h1><a href="home.php">Camagru</h1></a></center>
     <div>
         <center><h2>Settings</h2></center>
         <form class="form" method="post">
@@ -20,11 +20,68 @@
             <input type="password" name="password" class="inputvalues" placeholder="Enter new password"/><br>
             <label>Confirm New Password:</label><br>
             <input type="password" name="cpassword" class="inputvalues" placeholder="Confirm new password"/><br>
+            <label>Please choose notification preference:</label><br>
+            <label>Yes:</label><input type="checkbox" name="yesnotify" value="yes"/><br>
+            <label>No :</label><input type="checkbox" name="nonotify" value="no"/><br>
             <button type="submit" id="login_btn" name="update">Update</button>
             <button type="submit" id="login_btn" name="delete">Delete account</button>
         </form>
         <?php
         session_start();
+        if (isset($_POST['yesnotify']) || isset($_POST['nonotify']))
+        {
+            $servername = "localhost";
+            $dusername = "root";
+            $password = "password";
+            $dbname = "camagru";
+            $DB_DSN='mysql:host=localhost;dbname=camagru';
+            try
+            {
+                $conn = new PDO($DB_DSN, $dusername, $password);
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $str = "SELECT * FROM users";
+                $res = $conn->query($str);
+                while ($new = $res->fetch())
+                {
+                    if ($new['username'] == $_SESSION['username'])
+                    {
+                        $id = $new['user_id'];
+                    }
+                }
+            }
+            catch(PDOException $e)
+            {
+                echo "[INFO] " . $e->getMessage();
+            }
+            if ($_POST['yesnotify'] == yes)
+            {
+                try
+                {
+                    $conn = new PDO($DB_DSN, $dusername, $password);
+                    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                    $str = "UPDATE users SET notify='yes' WHERE user_id=$id";
+                    $res = $conn->exec($str);
+                }
+                catch(PDOException $e)
+                {
+                    echo "[INFO] " . $e->getMessage();
+                }
+            }
+            if ($_POST['nonotify'] == no)
+            {
+                try
+                {
+                    $conn = new PDO($DB_DSN, $dusername, $password);
+                    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                    $str = "UPDATE users SET notify='no' WHERE user_id=$id";
+                    $res = $conn->exec($str);
+                }
+                catch(PDOException $e)
+                {
+                    echo "[INFO] " . $e->getMessage();
+                }
+            }
+        }
         if (isset($_POST['delete']))
         {
             $servername = "localhost";
