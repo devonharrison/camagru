@@ -1,16 +1,12 @@
 <?php
- 
-    function setComments($connect)
+    function setComments($conn, $username, $id)
     {
         if (isset($_POST['commentSubmit']))
         {
-            $uid = $_POST['uid'];
             $date = $_POST['date'];
             $message = $_POST['message'];
-            $image_id = $_POST['image_id'];
-
-            $sql = "INSERT INTO comments(uid, date, message, image_id) VALUES ('$uid', '$date', '$message', '$image_id')";
-            $result = mysqli_query($connect,$sql);
+            $sql = "INSERT INTO comments(image_id, username, date, message) VALUES ('$id', '$username','$date', '$message')";
+            $conn->exec($sql);
         }
     }
 

@@ -38,14 +38,15 @@ try
     $images = "CREATE TABLE IF NOT EXISTS images (  
         `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
         `name` varchar(200) NOT NULL,
-        `image` longtext NOT NULL
-        ) ENGINE=InnoDB DEFAULT CHARSET=latin1";
+        `image` longtext NOT NULL,
+        `likes` int(11) NOT NULL)
+        ENGINE=InnoDB DEFAULT CHARSET=latin1";
     $conn->exec($images);
     /*Comments table */
     $comments = "CREATE TABLE IF NOT EXISTS comments (
         id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
         image_id int(11) NOT NULL,
-        uid VARCHAR(128) NOT NULL,
+        username VARCHAR(128) NOT NULL,
         date VARCHAR(128) NOT NULL,
         message TEXT NOT NULL)";
     $conn->exec($comments);

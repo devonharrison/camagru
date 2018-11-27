@@ -32,28 +32,33 @@
             $_SESSION['logged_in'] = 'no';
             session_destroy();
         }
-        try
+        if ($_SESSION['logged_in'] == 'yes')
         {
-            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $dusername, $password);
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $str = "SELECT * FROM images";
-            $res = $conn->query($str);
-            echo '<div class="container">';
-            while ($new = $res->fetch())
+            try
             {
-                $img = "<a href='picture.php'><img src=\"".$new['image']."\"></a>";
-                echo '<div class="img-con">';
-                echo $img;
+                $conn = new PDO("mysql:host=$servername;dbname=$dbname", $dusername, $password);
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $str = "SELECT * FROM images";
+                $res = $conn->query($str);
+                echo '<div class="container">';
+                while ($new = $res->fetch())
+                {
+                    $image = $new['image'];
+                    $link = 'picture.php?img='.$new["id"].'&user='.$new['name'];
+                    $img = "<a href=$link><img src=\"".$image."\"></a>";
+                    echo '<div class="img-con">';
+                    echo $img;
+                    echo '</div>';
+                }
                 echo '</div>';
+                echo '<div class="clearfix"></div>';
             }
-            echo '</div>';
-            echo '<div class="clearfix"></div>';
-        }
-        catch(PDOException $e)
-        {
-            echo "[INFO] " . $e->getMessage();
+            catch(PDOException $e)
+            {
+                echo "[INFO] " . $e->getMessage();
+            }
+            $conn = null;
         }
         ?>
-
 </body>
 </html>
