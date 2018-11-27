@@ -21,6 +21,7 @@
             <input type="password" name="password" class="inputvalues" placeholder="Enter a password"/><br>
             <button type="submit" id="login_btn" name="login">Login</button>
             <a href="forgotpw.php">Forgot your password?</a>
+            <a href="signup.php">Sign-up</a>
         </form>
         <?php
         $servername = "localhost";
