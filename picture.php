@@ -46,11 +46,47 @@
                             echo '</div>';
                         }
                     }
+
                     echo "<form method='POST' action='".setComments($conn, $user, $id)."'>
                     <input type='hidden' name='date' value='".date('Y-m-d H:i:s')."'>
                     <textarea name='message'></textarea><br>
                     <button type='submit' name='commentSubmit'>Comment</button>
                     </form>";
+                    if (isset($_POST['commentSubmit']))
+                    {
+                        try
+                        {
+                            $servername = "localhost";
+                            $dusername = "root";
+                            $password = "password";
+                            $dbname = "camagru";
+                            $DB_DSN='mysql:host=localhost;dbname=camagru';
+                            $conn = new PDO($DB_DSN, $dusername, $password);
+                            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                            $str = "SELECT * FROM users";
+                            $res = $conn->query($str);
+                            while ($new = $res->fetch())
+                            {
+                                if ($id == $new['id'])
+                                {
+                                    $email = $new['email'];
+                                    $notify = $new['notify'];
+                                }
+                            }
+                            if ($notify == 'yes')
+                            {
+                                $subject = "Someone commented on your image!";
+                                $body = "Someone commented on one of your images, you're basically famous now.";
+                                $headers = "From: noreply@camagru.com";
+                                mail ($email, $subject, $body, $headers);
+                                echo "Confirmation email sent to ".$email."<br>";    
+                            }
+                        }
+                        catch(PDOException $e)
+                        {
+                            echo "[INFO] " . $e->getMessage();
+                        }
+                    }
                     $str = "SELECT * FROM comments";
                     $res = $conn->query($str);
                     echo '</div>';
