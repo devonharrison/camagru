@@ -23,6 +23,19 @@ body {
     padding: 12px;
 }
 
+#login_btn {
+    background-color: #bab2b5;
+    padding: 10px;
+    margin: 12px;
+    color: #123c69;
+    width: 420px;
+    border-radius: 10px;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+    font-weight: bold;
+}
+
 .camagru {
     font-family: cursive;
     color: #ac3b61;
