@@ -11,7 +11,6 @@
 </head>
 
 <body>
-
     <div class="header">
         <a class="camagru" href="home.php">Camagru</a>
         <div class="header-right">

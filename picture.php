@@ -3,7 +3,7 @@
 
 <head>
     <title>Camagru</title>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="picture.css">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
@@ -16,9 +16,8 @@
             <a class="info" href="profile.php" name='signup'>Profile</a>
         </div>
     </div>
-    <form method="post">
-        <button type="submit" id="login_btn" name="like">Like</button>
-    </form>
+
+
             <?php
                 include 'webcam/comment.inc.php';
                 $servername = "localhost";
@@ -42,16 +41,21 @@
                             $img = "<img src=\"".$new['image']."\">";
                             echo '<div class="img-con">';
                             echo $img;
-                            echo $new['likes'];
+                            echo '<form method="post">
+                            <button type="submit" class="btn" name="like">Like</button>
+                            </form>';
+                            echo "<p>".$new['likes']."</p>";
                             echo '</div>';
                         }
                     }
 
-                    echo "<form method='POST' action='".setComments($conn, $user, $id)."'>
+                    echo '<div class="com-con">';
+                    echo "<form class='comment' method='POST' action='".setComments($conn, $user, $id)."'>
                     <input type='hidden' name='date' value='".date('Y-m-d H:i:s')."'>
                     <textarea name='message'></textarea><br>
-                    <button type='submit' name='commentSubmit'>Comment</button>
+                    <button class='btn' type='submit' name='commentSubmit'>Comment</button>
                     </form>";
+
                     if (isset($_POST['commentSubmit']))
                     {
                         try
@@ -89,8 +93,7 @@
                     }
                     $str = "SELECT * FROM comments";
                     $res = $conn->query($str);
-                    echo '</div>';
-                    echo '<div class="clearfix"></div>';
+                    echo '<div class="com">';
                     while ($new = $res->fetch())
                     {
                         if ($id == $new['image_id'] && $user == $new['username'])
@@ -98,6 +101,10 @@
                             echo $new['message'] . "<br>";
                         }
                     }
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '<div class="clearfix"></div>';
                 }
                 catch(PDOException $e)
                 {
