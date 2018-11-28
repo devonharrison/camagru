@@ -20,6 +20,7 @@
         <button type="submit" id="login_btn" name="like">Like</button>
     </form>
             <?php
+                session_start();
                 include 'webcam/comment.inc.php';
                 $servername = "localhost";
                 $dusername = "root";
@@ -46,7 +47,6 @@
                             echo '</div>';
                         }
                     }
-
                     echo "<form method='POST' action='".setComments($conn, $user, $id)."'>
                     <input type='hidden' name='date' value='".date('Y-m-d H:i:s')."'>
                     <textarea name='message'></textarea><br>
@@ -67,7 +67,7 @@
                             $res = $conn->query($str);
                             while ($new = $res->fetch())
                             {
-                                if ($id == $new['id'])
+                                if ($user == $new['username'])
                                 {
                                     $email = $new['email'];
                                     $notify = $new['notify'];
@@ -76,11 +76,12 @@
                             if ($notify == 'yes')
                             {
                                 $subject = "Someone commented on your image!";
-                                $body = "Someone commented on one of your images, you're basically famous now.";
+                                $body = $_SESSION['username'] . " commented on one of your images, you're basically famous now. Please click the following link to log in and see what they said.
+http://localhost:8080/camagru/login.php
+You can go to your profile page, click on settings and tick the 'no' box to stop recieving emails about irrelevent people commenting on your shitty pictures.";
                                 $headers = "From: noreply@camagru.com";
                                 mail ($email, $subject, $body, $headers);
-                                echo "Confirmation email sent to ".$email."<br>";    
-                            }
+                                }
                         }
                         catch(PDOException $e)
                         {
